@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import API from '../backend/data'
 
-export default class CityGems extends Component {
 
+class CityGems extends Component {
+
+  componentDidMount(){
+    fetch(`${API}/city_gems`)
+    .then(resp => resp.json())
+    .then(console.log)
+  }
 
   render(){
-    return()
+    return(
+      <div></div>
+    )
   }
 }
+
+
+export default CityGems;

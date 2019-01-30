@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import CityGems from './containers/CityGems'
+
 class App extends Component {
   render() {
     return (
@@ -19,6 +21,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <CityGems />
         </header>
       </div>
     );

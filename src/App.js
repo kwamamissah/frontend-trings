@@ -9,7 +9,7 @@ import CityGems from './containers/CityGems'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{ backgroundColor: "rgb(27,28,28)" }}>
         <Navbar />
         <LandingPage />
         <CityGems />

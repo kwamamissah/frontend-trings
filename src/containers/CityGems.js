@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import API from '../backend/data'
+import { fetchGems } from '../actions/cityGems'
 
 
 class CityGems extends Component {
@@ -9,8 +10,9 @@ class CityGems extends Component {
   componentDidMount(){
     fetch(`${API}/city_gems`)
     .then(resp => resp.json())
-    .then(console.log)
+    .then(gems => this.props.dispatch(fetchGems(gems)))
   }
+
 
   render(){
     return(
@@ -19,5 +21,5 @@ class CityGems extends Component {
   }
 }
 
-
+CityGems = connect()(CityGems);
 export default CityGems;

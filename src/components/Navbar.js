@@ -27,7 +27,7 @@ export default class Navbar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu inverted style={{ margin: "0"}}>
+      <Menu inverted borderless style={{ margin: "0"}}>
         <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
         <Menu.Item
           name='city'

@@ -13,13 +13,13 @@ export default class Navbar extends Component {
       <Menu inverted>
         <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
         <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
+          name='city'
+          active={activeItem === 'city'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
+          name='gems'
+          active={activeItem === 'gems'}
           onClick={this.handleItemClick}
         />
       </Menu>

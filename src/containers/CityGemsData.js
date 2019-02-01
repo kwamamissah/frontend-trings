@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import API from '../backend/data'
 import CityGems from '../components/CityGems'
+import { Card } from 'semantic-ui-react'
 import { fetchGems } from '../actions/cityGems'
 
 
@@ -16,9 +17,9 @@ class CityGemsData extends Component {
 
   render(){
     return(
-      <div style={{backgroundColor: 'light-blue'}}>
+      <Card.Group itemsPerRow={3}>
         {this.props.gems.map(x => <CityGems key={x.id} id={x.id} />)}
-      </div>
+      </Card.Group>
     )
   }
 }

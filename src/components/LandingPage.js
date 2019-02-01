@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -31,7 +32,7 @@ export default class LandingPage extends Component {
                   <div className='legend' style={legendHack}>
                     <h1 style={{fontSize: '50px', fontFamily: 'Rock Salt, sans-serif'}}> Trings</h1>
                     <h4 style={{fontSize: '20px', fontFamily: 'Rock Salt, sans-serif'}}> Unlock the gems in your city </h4>
-                    <button style={button}>Get Started</button>
+                    <Link to='/city_gems'><button style={button}>Get Started</button></Link>
                    </div>
                   <img src="https://images.unsplash.com/photo-1511306404404-ad607bd7c601?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" alt="nature"/>
               </div>

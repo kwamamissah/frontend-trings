@@ -20,7 +20,7 @@ const button= {
   padding: '15px 40px',
   fontWeight: '400',
   fontSize: '13px',
-  cursor: 'url(%PUBLIC_URL%/greendiamond.png),auto'
+  cursor: 'pointer'
 }
 
 export default class LandingPage extends Component {

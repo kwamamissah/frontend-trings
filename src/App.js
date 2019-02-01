@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 // import './App.css';
 
 import Navbar from './components/Navbar'
 import LandingPage from './components/LandingPage'
-import CityGems from './containers/CityGems'
+import CityGemsData from './containers/CityGemsData'
 
 
 class App extends Component {
@@ -11,8 +12,10 @@ class App extends Component {
     return (
       <div className="App" style={{ backgroundColor: "rgb(27,28,28)" }}>
         <Navbar />
-        <LandingPage />
-        <CityGems />
+        <Switch>
+          <Route path="/city_gems" component={CityGemsData} />
+          <Route path="/" component={LandingPage} />
+        </Switch>
       </div>
     );
   }

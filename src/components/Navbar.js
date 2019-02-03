@@ -14,15 +14,15 @@ export default class Navbar extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  // fetchWeather = (city) => {
-  //   fetch(WeatherAPI)
-  //   .then(resp => resp.json())
-  //   .then(console.log)
-  // }
-  //
-  // componentDidMount(){
-  //   this.fetchWeather()
-  // }
+  fetchWeather = (city = 'Atlanta') => {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=5bbb1b66f4a5c0d2731ed0a9d297cb63`)
+    .then(resp => resp.json())
+    .then(console.log)
+  }
+
+  componentDidMount(){
+    this.fetchWeather()
+  }
 
   render() {
     const { activeItem } = this.state

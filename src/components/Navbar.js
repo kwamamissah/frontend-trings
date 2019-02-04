@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Image, Menu } from 'semantic-ui-react'
+import { Image, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 let city = 'Atlanta'
@@ -59,7 +59,7 @@ export default class Navbar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu inverted borderless style={{ margin: "0"}}>
+      <Menu inverted borderless style={{ margin: "0", fontFamily: 'Lora, serif'}}>
         <Link to='/'>
           <Menu.Item
             name='home'
@@ -92,11 +92,13 @@ export default class Navbar extends Component {
           name={this.getTemp()}/>
 
         <Menu.Menu position='right'>
+          <Link to='/login'>
           <Menu.Item
             name='login'
             active={activeItem === 'login'}
             onClick={this.handleItemClick}/>
-          </Menu.Menu>
+          </Link>
+        </Menu.Menu>
 
 
       </Menu>

@@ -6,6 +6,13 @@ let city = 'Atlanta'
 let APIKEY = `5bbb1b66f4a5c0d2731ed0a9d297cb63`
 const WeatherAPI = `api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKEY}`
 
+const iconCss = {
+  height: 'auto',
+  width: 'auto',
+  maxWidth: '25px',
+  maxHeight: '25px'
+}
+
 export default class Navbar extends Component {
   state = {
     activeItem: 'home',
@@ -28,19 +35,22 @@ export default class Navbar extends Component {
 
   getTemp = () => {
     let main = this.state.weather.main
-    let name = this.state.weather.name
-    let weather = this.state.weather.weather
-
     if (main === undefined) {
       console.log('content is loading')
     } else {
       let temp = main.temp
+      return (Math.round(temp))
+    }
+  }
+
+  getIcon = () => {
+    let weather = this.state.weather.weather
+    if (weather === undefined) {
+      console.log('content is loading')
+    } else {
       let icon = weather[0].icon
-      let description = weather[0].description
-
-      console.log(name, <img src = {`http://openweathermap.org/img/w/${icon}.png`} alt="icon"/>, Math.round(temp))
-      return (name, Math.round(temp))
-
+      console.log(icon)
+      return icon
     }
   }
 
@@ -56,10 +66,12 @@ export default class Navbar extends Component {
             active={activeItem === 'home'}
             onClick={this.handleItemClick} />
           </Link>
+
         <Menu.Item
           name='city'
           active={activeItem === 'city'}
           onClick={this.handleItemClick}/>
+
 
         <Link to='/city_gems'>
           <Menu.Item
@@ -71,10 +83,10 @@ export default class Navbar extends Component {
         <Menu.Item
           name={this.state.weather.name}/>
 
-        <Menu.Item
-         name='weather icon'>
-         <Image src='http://openweathermap.org/img/w/04d.png' as={'i'} />
-       </Menu.Item>
+          <Menu.Item
+           name='weather icon'>
+           <Image style={iconCss} src={`http://openweathermap.org/img/w/${this.getIcon()}.png`} as='icon'/>
+         </Menu.Item>
 
         <Menu.Item
           name={this.getTemp()}/>

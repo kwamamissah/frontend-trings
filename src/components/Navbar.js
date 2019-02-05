@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Image, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout} from '../actions/user';
 
 let city = 'Atlanta'
 let APIKEY = `5bbb1b66f4a5c0d2731ed0a9d297cb63`
@@ -57,7 +58,7 @@ class Navbar extends Component {
 
   render() {
     const { activeItem } = this.state
-
+    console.log(this.props.username)
     return (
       <Menu inverted borderless style={{ margin: "0", fontFamily: 'Lora, serif'}}>
         <Link to='/'>
@@ -92,11 +93,14 @@ class Navbar extends Component {
           name={this.getTemp()}/>
 
         <Menu.Menu position='right'>
-          {localStorage.getItem('username') ?
-          <Menu.Item
-            name='logout'
-            active={activeItem === 'logout'}
-            onClick={this.handleItemClick}/> :
+          {this.props.username ?
+          <Link to='/'>
+            <Menu.Item
+              name='logout'
+              active={activeItem === 'logout'}
+              onClick={() => this.props.dispatch(logout())}/>
+            </Link>
+            :
           <Link to='/login'>
           <Menu.Item
             name='login'
@@ -112,7 +116,7 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user }
+  return { username: state.username }
 }
 
 export default connect(mapStateToProps)(Navbar);

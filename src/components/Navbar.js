@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Image, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 let city = 'Atlanta'
 let APIKEY = `5bbb1b66f4a5c0d2731ed0a9d297cb63`
@@ -13,7 +14,7 @@ const iconCss = {
   maxHeight: '25px'
 }
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   state = {
     activeItem: 'home',
     weather: []
@@ -49,7 +50,6 @@ export default class Navbar extends Component {
       console.log('content is loading')
     } else {
       let icon = weather[0].icon
-      console.log(icon)
       return icon
     }
   }
@@ -92,12 +92,17 @@ export default class Navbar extends Component {
           name={this.getTemp()}/>
 
         <Menu.Menu position='right'>
+          {localStorage.getItem('username') ?
+          <Menu.Item
+            name='logout'
+            active={activeItem === 'logout'}
+            onClick={this.handleItemClick}/> :
           <Link to='/login'>
           <Menu.Item
             name='login'
             active={activeItem === 'login'}
             onClick={this.handleItemClick}/>
-          </Link>
+          </Link>}
         </Menu.Menu>
 
 
@@ -105,3 +110,9 @@ export default class Navbar extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(Navbar);

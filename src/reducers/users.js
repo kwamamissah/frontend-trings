@@ -1,9 +1,9 @@
-export default function(state = localStorage.getItem('name'), action){
+export default function(state = localStorage.getItem('username'), action){
   switch(action.type){
     case 'LOGIN_USER':
       return action.user;
     case "LOGOUT_USER":
-      return null 
+      return null
     default:
       return state;
   }

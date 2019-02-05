@@ -27,8 +27,8 @@ class Login extends Component {
     .then(resp => resp.json())
     .then(payload => {
       localStorage.setItem('token', payload.token)
-      localStorage.setItem('name', payload.name)
-      this.props.dispatch(login(payload.name))
+      localStorage.setItem('username', payload.username)
+      this.props.dispatch(login(payload.username))
       this.props.history.push('/')
     })
   }

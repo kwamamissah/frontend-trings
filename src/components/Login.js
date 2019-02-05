@@ -36,7 +36,9 @@ class Login extends Component {
 
 render() {
     return (
+
       <Form onSubmit={(e) => this.handleSubmit(e)} style={{ backgroundColor: 'white', alignItems: 'center'}}>
+        <h1>Login</h1>
        <Form.Field>
          <label>Email</label>
          <input type='text' placeholder='Email...' name='email' onChange={(e) => this.handleChange(e)} style={{ width: '45%'}}/>

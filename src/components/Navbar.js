@@ -62,19 +62,19 @@ class Navbar extends Component {
 
     return (
       <Menu inverted borderless style={{ margin: "0", fontFamily: 'Lora, serif'}}>
-        <Link to='/'>
-          <Menu.Item
+
+          <Menu.Item as={Link} to='/'
             name='home'
             active={activeItem === 'home'}
             onClick={this.handleItemClick} />
-          </Link>
 
-        <Link to='/city_gems'>
-          <Menu.Item
-            name='gems'
-            active={activeItem === 'gems'}
-            onClick={this.handleItemClick}/>
-        </Link>
+
+
+        <Menu.Item as={Link} to='/city_gems'
+          name='gems'
+          active={activeItem === 'gems'}
+          onClick={this.handleItemClick}/>
+
 
         <Menu.Item
           name='city'
@@ -94,19 +94,17 @@ class Navbar extends Component {
 
         <Menu.Menu position='right'>
           {this.props.username ?
-          <Link to='/'>
-            <Menu.Item
+            <Menu.Item as={Link} to='/'
               name='logout'
               active={activeItem === 'logout'}
               onClick={() => this.props.dispatch(logout())}/>
-            </Link>
             :
-          <Link to='/login'>
-          <Menu.Item
-            name='login'
-            active={activeItem === 'login'}
-            onClick={this.handleItemClick}/>
-          </Link>}
+
+            <Menu.Item as={Link} to='/login'
+              name='login'
+              active={activeItem === 'login'}
+              onClick={this.handleItemClick}/>
+            }
         </Menu.Menu>
 
 

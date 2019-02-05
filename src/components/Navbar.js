@@ -18,12 +18,13 @@ const iconCss = {
 class Navbar extends Component {
   state = {
     activeItem: 'home',
-    weather: []
+    weather: [],
+    city: 'Atlanta'
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  fetchWeather = (city = 'Atlanta') => {
+  fetchWeather = (city = this.state.city) => {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=5bbb1b66f4a5c0d2731ed0a9d297cb63&units=imperial`)
     .then(resp => resp.json())
     .then(weather => this.setState({weather: weather}))
@@ -58,7 +59,7 @@ class Navbar extends Component {
 
   render() {
     const { activeItem } = this.state
-    console.log(this.props.username)
+
     return (
       <Menu inverted borderless style={{ margin: "0", fontFamily: 'Lora, serif'}}>
         <Link to='/'>
@@ -68,18 +69,17 @@ class Navbar extends Component {
             onClick={this.handleItemClick} />
           </Link>
 
-        <Menu.Item
-          name='city'
-          active={activeItem === 'city'}
-          onClick={this.handleItemClick}/>
-
-
         <Link to='/city_gems'>
           <Menu.Item
             name='gems'
             active={activeItem === 'gems'}
             onClick={this.handleItemClick}/>
         </Link>
+
+        <Menu.Item
+          name='city'
+          active={activeItem === 'city'}
+          onClick={this.handleItemClick}/>
 
         <Menu.Item
           name={this.state.weather.name}/>

@@ -128,7 +128,6 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger
   return {
     username: state.username
    }

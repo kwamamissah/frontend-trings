@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Grid, Header, Segment, Loader} from 'semantic-ui-react'
+import { Grid, Header, Segment, Loader, Image, Divider} from 'semantic-ui-react'
 
 //creates a span at the top of page that greets user Good Morning or Happy Day of Week user
 //creates a span under initial span that retrieves and displays QOD - format *beige background + i
@@ -53,7 +53,7 @@ class ProfilePage extends Component {
     return(
 
       <div style={{ backgroundColor: 'white'}}>
-        <Grid container style={{ padding: '3em 0em' }} >
+        <Grid container style={{ padding: '3em 0em' }}>
           <Grid.Row>
             <Grid.Column>
               <Header as='h1' textAlign='center' >
@@ -65,10 +65,66 @@ class ProfilePage extends Component {
           <Grid.Row>
             <Grid.Column>
               <Segment style={{backgroundColor: '#f5f5dc'}}>
-                <p style={{justifyContent: 'center', fontFamily: 'Lora, sans-serif'}}><strong>quote of the day:</strong> {this.getQOD()}</p>
+                <p style={{textAlign: 'center', fontFamily: 'Lora, sans-serif'}}><strong>quote of the day:</strong> {this.getQOD()}</p>
               </Segment>
             </Grid.Column>
           </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column>
+              <Header as='h1' textAlign='center' >
+              Picture
+              </Header>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column divided>
+              <Header as='h1' textAlign='center' >
+              </Header>
+              <Image size='medium' centered src='https://react.semantic-ui.com/images/wireframe/image.png' />
+            </Grid.Column>
+          </Grid.Row>
+
+
+          <Grid.Row style={{ padding: '3em 0em' }}>
+            <Grid.Column>
+              <Header as='h1' textAlign='center' >
+              My Explore Zone
+              </Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Divider />
+
+          <Grid.Row divided>
+            <Grid.Column>
+              <Header as='h2' >
+              Favorites ♥️
+              </Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Divider />
+
+          <Grid.Row divided>
+            <Grid.Column>
+              <Header as='h2' >
+              Most Recently Viewed 👀
+              <Divider />
+              </Header>
+            </Grid.Column>
+          </Grid.Row>
+
+
+          <Grid.Row divided>
+            <Grid.Column>
+              <Header as='h2' >
+              Gems of Interest 💎
+              </Header>
+            </Grid.Column>
+          </Grid.Row>
+          <Divider />
+
+
         </Grid>
       </div>
     )

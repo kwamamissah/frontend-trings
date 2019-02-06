@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Menu } from 'semantic-ui-react'
+import { Image, Menu, Loader } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout} from '../actions/user';
@@ -14,6 +14,8 @@ const iconCss = {
   maxWidth: '25px',
   maxHeight: '25px'
 }
+
+const loading = () => <Loader active inline='centered' />
 
 class Navbar extends Component {
   state = {
@@ -39,7 +41,7 @@ class Navbar extends Component {
   getTemp = () => {
     let main = this.state.weather.main
     if (main === undefined) {
-      console.log('content is loading')
+      loading()
     } else {
       let temp = main.temp
       return (Math.round(temp))
@@ -49,7 +51,7 @@ class Navbar extends Component {
   getIcon = () => {
     let weather = this.state.weather.weather
     if (weather === undefined) {
-      console.log('content is loading')
+      loading()
     } else {
       let icon = weather[0].icon
       return icon
@@ -62,13 +64,16 @@ class Navbar extends Component {
 
     return (
       <Menu inverted borderless style={{ margin: "0", fontFamily: 'Lora, serif'}}>
-
-          <Menu.Item as={Link} to='/'
-            name='home'
-            active={activeItem === 'home'}
-            onClick={this.handleItemClick} />
-
-
+        {this.props.username ?
+        <Menu.Item as={Link} to='/profile'
+          name='home'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick} />
+          :
+        <Menu.Item as={Link} to='/'
+          name='home'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick} /> }
 
         <Menu.Item as={Link} to='/city_gems'
           name='gems'
@@ -114,7 +119,13 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { username: state.username }
+  debugger
+  return {
+
+    username: state.username,
+    firstName: state.first
+
+   }
 }
 
 export default connect(mapStateToProps)(Navbar);

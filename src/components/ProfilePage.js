@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Grid, Header, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import { Grid, Header, Segment, Loader} from 'semantic-ui-react'
 
 //creates a span at the top of page that greets user Good Morning or Happy Day of Week user
 //creates a span under initial span that retrieves and displays QOD - format *beige background + i
@@ -19,7 +20,9 @@ const center = {
  justifyContent: 'center'
 }
 
-export default class ProfilePage extends Component {
+const loading = () => <Loader active inline='centered' />
+
+class ProfilePage extends Component {
 
   state = {
     quote: []
@@ -31,10 +34,12 @@ export default class ProfilePage extends Component {
     .then(quote => this.setState({ quote }))
   }
 
+
+
   getQOD = () => {
     let data = this.state.quote.contents
     if (data === undefined) {
-      console.log('content is loading')
+      loading()
     } else {
       let contents = data.quotes[0]
       let quote = contents.quote
@@ -51,8 +56,8 @@ export default class ProfilePage extends Component {
         <Grid container style={{ padding: '3em 0em' }} >
           <Grid.Row>
             <Grid.Column>
-              <Header as='h1' dividing >
-                Hi User! <span>😀</span>
+              <Header as='h1' textAlign='center' >
+                Hi {this.props.username}! <span>😀</span>
               </Header>
             </Grid.Column>
           </Grid.Row>
@@ -69,3 +74,9 @@ export default class ProfilePage extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return { username: state.username }
+}
+
+export default connect(mapStateToProps)(ProfilePage);

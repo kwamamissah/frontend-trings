@@ -29,7 +29,7 @@ class Login extends Component {
       localStorage.setItem('token', payload.token)
       localStorage.setItem('username', payload.username)
       this.props.dispatch(login(payload.username))
-      this.props.history.push('/')
+      this.props.history.push('/profile')
     })
   }
 

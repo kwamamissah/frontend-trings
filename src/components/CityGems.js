@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 // import CityGemsDisplay from './CityGemsDisplay'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
+// <Card.Description>{props.gem.description}</Card.Description>
+
 let CityGems = (props) => {
 
     return(
@@ -13,7 +15,6 @@ let CityGems = (props) => {
         <Card.Meta>
           <span className='date'>{props.gem.address}</span>
         </Card.Meta>
-        <Card.Description>{props.gem.description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <a>

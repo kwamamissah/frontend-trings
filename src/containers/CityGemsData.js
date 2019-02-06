@@ -17,7 +17,7 @@ class CityGemsData extends Component {
 
   render(){
     return(
-      <Card.Group itemsPerRow={3}>
+      <Card.Group itemsPerRow={4}>
         {this.props.gems.map(x => <CityGems key={x.id} id={x.id} />)}
       </Card.Group>
     )

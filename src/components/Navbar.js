@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Menu, Loader } from 'semantic-ui-react'
+import { Image, Menu, Dropdown, Loader, Input } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout} from '../actions/user';
@@ -14,7 +14,14 @@ const iconCss = {
   maxWidth: '25px',
   maxHeight: '25px'
 }
-
+const options = [
+  { key: 1, text: 'DayTime Events', value: 1 },
+  { key: 2, text: 'Bites', value: 2 },
+  { key: 3, text: 'Clothing', value: 3 },
+  { key: 4, text: 'Art', value: 4 },
+  { key: 5, text: 'Night Life', value: 5 },
+  { key: 6, text: 'Alternative Ideas', value: 6 }
+]
 const loading = () => <Loader active inline='centered' />
 
 class Navbar extends Component {
@@ -32,7 +39,9 @@ class Navbar extends Component {
     .then(weather => this.setState({weather: weather}))
   }
 
-
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value})
+  }
 
   componentDidMount(){
     this.fetchWeather()
@@ -75,16 +84,16 @@ class Navbar extends Component {
           active={activeItem === 'home'}
           onClick={this.handleItemClick} /> }
 
-        <Menu.Item as={Link} to='/city_gems'
-          name='gems'
+        <Menu.Item compact as={Link} to='/city_gems'>
+          <Dropdown text='Gems' options={options} simple item
           active={activeItem === 'gems'}
-          onClick={this.handleItemClick}/>
+          onClick={this.handleItemClick} />
+          </Menu.Item>
 
 
-        <Menu.Item
-          name='city'
-          active={activeItem === 'city'}
-          onClick={this.handleItemClick}/>
+        <Menu.Item>
+          <Input icon='map' placeholder='City...' name='city' onChange={(e) => this.handleChange(e)} />
+        </Menu.Item>
 
         <Menu.Item
           name={this.state.weather.name}/>
@@ -121,10 +130,7 @@ class Navbar extends Component {
 const mapStateToProps = (state) => {
   debugger
   return {
-
-    username: state.username,
-    firstName: state.first
-
+    username: state.username
    }
 }
 

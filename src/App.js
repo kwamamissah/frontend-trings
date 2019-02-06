@@ -5,7 +5,9 @@ import { Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar'
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
+import ProfilePage from './components/ProfilePage'
 import CityGemsData from './containers/CityGemsData'
+
 
 
 class App extends Component {
@@ -15,6 +17,7 @@ class App extends Component {
       <div className="App" style={{ backgroundColor: "rgb(27,28,28)" }}>
         <Navbar />
         <Switch>
+          <Route path="/profile" component={ProfilePage} />
           <Route path="/login" component={Login} />
           <Route path="/city_gems" component={CityGemsData} />
           <Route path="/" component={LandingPage} />

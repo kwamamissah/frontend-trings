@@ -14,7 +14,7 @@ import { Grid, Header, Segment, Loader, Image, Divider} from 'semantic-ui-react'
 let QUOTEAPI = `http://quotes.rest/qod.json`
 let UNAPIKEY = 'de4f6d05437fd7ae0fa1315b1b8542b78a748392aa7560008b1fa826041f7e4c'
 
-const Slideshow = require('react-slidez')
+
 
 const center = {
  height: '100%',
@@ -42,7 +42,7 @@ class ProfilePage extends Component {
   fetchImages = () => {
     fetch(`https://api.unsplash.com/search/photos/?client_id=${UNAPIKEY}&per_page=15&orientation=landscape&query=art`)
     .then(resp => resp.json())
-    .then(images => this.setState ({ images }))
+    .then(images => this.setState({ images }))
   }
 
   componentDidMount(){
@@ -63,9 +63,18 @@ class ProfilePage extends Component {
     }
   }
 
+  getImages = () => {
+    let data = this.state.images.results
+    if (data === undefined) {
+      loading()
+    } else {
+      return data
+      debugger
+    }
+  }
+
   render(){
 
-  
     return(
 
       <div style={{ backgroundColor: 'white'}}>

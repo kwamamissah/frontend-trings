@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import {  Grid, Image, Rating, Icon, Header, Divider } from 'semantic-ui-react'
+import {  Grid, Image, Rating, Icon, Header, Divider, Sticky } from 'semantic-ui-react'
 
 
 const CityGemsDisplay = (props) => {
@@ -9,19 +9,24 @@ const CityGemsDisplay = (props) => {
 
   return(
     <div style={{ backgroundColor: 'white'}}>
-      <Grid columns={2} divided style={{ padding: '3em 3em', width: '80%'}}>
-        <Grid.Row>
-          <Grid.Column>
+      <Grid columns={2} style={{ padding: '3em 3em', width: '100%', position: 'relative'}}>
+        <Grid.Row divided >
+          <Grid.Column centered>
+            <Sticky>
             <Image size='large' src={props.gem.img_url} />
             <br/>
             <a>
-              <Rating icon='heart' maxRating={1} /> <br/>
-              <Rating maxRating={5} clearable />
+              <Rating icon='heart' defaultRating={0} maxRating={1} /> <br/>
+              <Rating defaultRating={3} maxRating={5} disabled />
             </a>
+            </Sticky>
           </Grid.Column>
+
+
+
           <Grid.Column>
-            <h5>{props.gem.category_id.name}</h5>
-            <h1>{props.gem.name}</h1>
+            <Header as='h5'>{props.gem.category_id.name}</Header>
+            <Header as='h1'>{props.gem.name}</Header>
             <Header as='h4'>
               <Header.Content>
                 <Icon name='map pin'/>
@@ -57,7 +62,30 @@ const CityGemsDisplay = (props) => {
                 {props.gem.description}
               </Header.Content>
             </Header>
+          </Grid.Column>
+        </Grid.Row>
 
+
+        <Divider hidden section />
+        <Grid.Row>
+          <Grid.Column>
+            <Header as='h2'>
+              <Header.Content>
+                Guest Reviews
+              </Header.Content>
+            </Header>
+            <br/>
+            <a>
+              3.57 <Rating icon='star' defaultRating={3} maxRating={5} disabled />
+            </a>
+          </Grid.Column>
+
+          <Grid.Column>
+            <Header as='h2'>
+              <Header.Content>
+                Comment Section
+              </Header.Content>
+            </Header>
           </Grid.Column>
         </Grid.Row>
       </Grid>

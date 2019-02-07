@@ -19,7 +19,7 @@ let CityGems = (props) => {
       <Card.Content extra>
         <a>
           <Rating icon='heart' maxRating={1} /> <br/>
-          <Rating maxRating={5} clearable />
+          <Rating icon='star' maxRating={5} clearable />
         </a>
       </Card.Content>
     </Card>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import API from '../backend/data'
-import CityGems from '../components/CityGems'
-import { Card, Grid } from 'semantic-ui-react'
+import CityGemsGrid from '../components/CityGemsGrid'
+import CityGemsDisplay from '../components/CityGemsDisplay'
 import { fetchGems } from '../actions/cityGems'
 
 
@@ -17,18 +18,11 @@ class CityGemsData extends Component {
   }
 
   render(){
-
-    let dayTime = this.props.gems.filter(gem => gem.category === 1)
-    let bites = this.props.gems.filter(gem => gem.category === 2)
-    let clothing = this.props.gems.filter(gem => gem.category === 3)
-    let art = this.props.gems.filter(gem => gem.category === 4)
-    let nightLife = this.props.gems.filter(gem => gem.category === 5)
-    let alt = this.props.gems.filter(gem => gem.category === 6)
-
-    return(
-           <Card.Group itemsPerRow={4}>
-             {this.props.gems.slice(0,12).map(x => <CityGems key={x.id} id={x.id}  />)}
-           </Card.Group>
+    return (
+      <Switch>
+        <Route path="/city_gems/all" component={CityGemsGrid} />
+        <Route path="/city_gems/:id" component={CityGemsDisplay} />
+      </Switch>
 
     )
   }

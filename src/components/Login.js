@@ -5,22 +5,13 @@ import { Form, Button } from 'semantic-ui-react'
 import API from '../backend/data'
 import { login } from '../actions/user';
 
-const center = {
- // height: '100%',
- // width: '100%',
- display: 'flex',
- position: 'fixed',
- justifyContent: 'center',
- // bottom: '20px',
- top: '30%',
- right: '30%'
-}
 
  const form = {position: 'absolute',
  left: "30%",
  top: '30%',
  width: '40%',
- textAlign: 'left'
+ textAlign: 'left',
+ backgroundColor: 'green'
 }
 
 class Login extends Component {
@@ -55,7 +46,7 @@ class Login extends Component {
 render() {
     return (
 
-      <Form onSubmit={(e) => this.handleSubmit(e)} style={{ backgroundColor: 'green'}} style={form}>
+      <Form onSubmit={(e) => this.handleSubmit(e)} style={form}>
         <h1>Login</h1>
        <Form.Field>
          <label>Email</label>

@@ -84,7 +84,7 @@ class Navbar extends Component {
           active={activeItem === 'home'}
           onClick={this.handleItemClick} /> }
 
-        <Menu.Item compact as={Link} to='/city_gems'>
+        <Menu.Item compact as={Link} to='/city_gems/all'>
           <Dropdown text='Gems' options={options} simple item
           active={activeItem === 'gems'}
           onClick={this.handleItemClick} />

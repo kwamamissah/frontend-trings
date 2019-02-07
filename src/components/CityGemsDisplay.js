@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import {  Grid, Image, Rating, Icon, Header, Divider, Sticky } from 'semantic-ui-react'
+import {  Grid, Image, Rating, Icon, Header,
+          Divider, Sticky, Comment, Form, Button } from 'semantic-ui-react'
 
 
 const CityGemsDisplay = (props) => {
@@ -81,11 +82,29 @@ const CityGemsDisplay = (props) => {
           </Grid.Column>
 
           <Grid.Column>
-            <Header as='h2'>
-              <Header.Content>
-                Comment Section
-              </Header.Content>
+          <Comment.Group>
+            <Header as='h3' dividing>
+              Comments
             </Header>
+            <Comment>
+              <Comment.Content>
+                <Comment.Author as='a'>User</Comment.Author>
+                <Comment.Metadata>
+                  <div>Today at 5:42PM</div>
+                </Comment.Metadata>
+                <Comment.Text>How artistic!</Comment.Text>
+                <Comment.Actions>
+                  <Comment.Action>Reply</Comment.Action>
+                </Comment.Actions>
+              </Comment.Content>
+            </Comment>
+            <Form reply>
+              <Form.TextArea />
+              <Button content='Add Comment' labelPosition='left' icon='edit' primary />
+            </Form>
+          </Comment.Group>
+
+
           </Grid.Column>
         </Grid.Row>
       </Grid>

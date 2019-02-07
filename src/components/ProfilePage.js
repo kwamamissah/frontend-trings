@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Grid, Header, Segment, Loader, Image, Divider} from 'semantic-ui-react'
 
+
 //creates a span at the top of page that greets user Good Morning or Happy Day of Week user
 //creates a span under initial span that retrieves and displays QOD - format *beige background + i
 
@@ -11,6 +12,9 @@ import { Grid, Header, Segment, Loader, Image, Divider} from 'semantic-ui-react'
 //create a section for Recommended Gems(random picks not in Fav or Saved)
 
 let QUOTEAPI = `http://quotes.rest/qod.json`
+let UNAPIKEY = 'de4f6d05437fd7ae0fa1315b1b8542b78a748392aa7560008b1fa826041f7e4c'
+
+const Slideshow = require('react-slidez')
 
 const center = {
  height: '100%',
@@ -25,15 +29,26 @@ const loading = () => <Loader active inline='centered' />
 class ProfilePage extends Component {
 
   state = {
-    quote: []
+    quote: [],
+    images: []
   }
 
-  componentDidMount(){
+  fetchQuote = () => {
     fetch(QUOTEAPI)
     .then(resp => resp.json())
     .then(quote => this.setState({ quote }))
   }
 
+  fetchImages = () => {
+    fetch(`https://api.unsplash.com/search/photos/?client_id=${UNAPIKEY}&per_page=15&orientation=landscape&query=art`)
+    .then(resp => resp.json())
+    .then(images => this.setState ({ images }))
+  }
+
+  componentDidMount(){
+    this.fetchQuote()
+    this.fetchImages()
+  }
 
 
   getQOD = () => {
@@ -50,18 +65,11 @@ class ProfilePage extends Component {
 
   render(){
 
+  
     return(
 
       <div style={{ backgroundColor: 'white'}}>
-        <Grid container style={{ padding: '3em 0em' }}>
-          <Grid.Row>
-            <Grid.Column>
-              <Header as='h1' textAlign='center' >
-                Hi {this.props.username}! <span>😀</span>
-              </Header>
-            </Grid.Column>
-          </Grid.Row>
-
+        <Grid container style={{ padding: '3em 0em', width: '80%'}}>
           <Grid.Row>
             <Grid.Column>
               <Segment style={{backgroundColor: '#f5f5dc'}}>
@@ -73,7 +81,7 @@ class ProfilePage extends Component {
           <Grid.Row>
             <Grid.Column>
               <Header as='h1' textAlign='center' >
-              Picture
+              Hi {this.props.username}! <span>😀</span>
               </Header>
             </Grid.Column>
           </Grid.Row>
@@ -82,7 +90,7 @@ class ProfilePage extends Component {
             <Grid.Column divided>
               <Header as='h1' textAlign='center' >
               </Header>
-              <Image size='medium' centered src='https://react.semantic-ui.com/images/wireframe/image.png' />
+
             </Grid.Column>
           </Grid.Row>
 

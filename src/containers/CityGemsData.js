@@ -27,7 +27,7 @@ class CityGemsData extends Component {
 
     return(
            <Card.Group itemsPerRow={4}>
-             {this.props.gems.map(x => <CityGems key={x.id} id={x.id} />)}
+             {this.props.gems.slice(0,12).map(x => <CityGems key={x.id} id={x.id}  />)}
            </Card.Group>
 
     )

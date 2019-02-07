@@ -72,7 +72,7 @@ class Navbar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu inverted borderless style={{ margin: "0", fontFamily: 'Lora, serif'}}>
+      <Menu inverted borderless style={{ margin: "0", fontFamily: 'Lora, serif'}} size='small'>
         {this.props.username ?
         <Menu.Item as={Link} to='/profile'
           name='home'

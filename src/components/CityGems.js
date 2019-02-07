@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux';
 // import CityGemsDisplay from './CityGemsDisplay'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon, Image, Rating } from 'semantic-ui-react'
 
 // <Card.Description>{props.gem.description}</Card.Description>
 
 let CityGems = (props) => {
 
     return(
-      <Card>
+      <Card >
       <Image src={props.gem.img_url} />
       <Card.Content>
         <Card.Header>{props.gem.name}</Card.Header>
@@ -18,8 +18,8 @@ let CityGems = (props) => {
       </Card.Content>
       <Card.Content extra>
         <a>
-          <Icon name='like' />
-
+          <Icon name='like' /> <br/>
+          <Rating maxRating={5} clearable />
         </a>
       </Card.Content>
     </Card>

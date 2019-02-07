@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Grid, Header, Segment, Loader, Image, Divider} from 'semantic-ui-react'
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 
 //creates a span at the top of page that greets user Good Morning or Happy Day of Week user
 //creates a span under initial span that retrieves and displays QOD - format *beige background + i
@@ -69,12 +72,11 @@ class ProfilePage extends Component {
       loading()
     } else {
       return data
-      debugger
     }
   }
 
   render(){
-
+    console.log(this.props.image)
     return(
 
       <div style={{ backgroundColor: 'white'}}>
@@ -97,9 +99,11 @@ class ProfilePage extends Component {
 
           <Grid.Row>
             <Grid.Column divided>
-              <Header as='h1' textAlign='center' >
-              </Header>
+              <Carousel autoPlay infiniteLoop emulateTouch showArrows={false} showIndicators={false} showStatus={false} showThumbs={false} transitionTime={1000} >
+                  <div>
 
+                  </div>
+              </Carousel>
             </Grid.Column>
           </Grid.Row>
 

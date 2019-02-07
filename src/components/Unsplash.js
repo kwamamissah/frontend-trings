@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import ProfilePage from './ProfilePage'
 
-export default class Unsplash extends Compennt {
+let UNAPIKEY = 'de4f6d05437fd7ae0fa1315b1b8542b78a748392aa7560008b1fa826041f7e4c'
+
+export default class Unsplash extends Component {
 
   state = {
     images: []
@@ -19,10 +21,11 @@ export default class Unsplash extends Compennt {
   }
 
   render(){
-    return{
+    console.log(this.state.images.results)
+    return(
       <div>
-        {this.state.images.map(image => <ProfilePage image={image.urls.small})}
+        
       </div>
-    }
+    )
   }
 }

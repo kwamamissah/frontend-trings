@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Card, Segment, Icon, Grid, Divider } from 'semantic-ui-react'
+import { Card, Segment, Icon, Grid, Divider, Loader, Image } from 'semantic-ui-react'
 
+import Diamond from '../greendiamond.png'
 import CityGems from '../components/CityGems'
 import CityGemsSpotlight from '../components/CityGemsSpotlight'
 
 const CityGemsGrid = (props) => {
 
-  if (props.gems === undefined) { return null; }
+  if (props.gems === undefined) { return <Loader active inline='centered' />}
   console.log(props.gems)
 
   let rand = (gem) => Math.floor(Math.random()*gem.length)
@@ -22,9 +23,6 @@ const CityGemsGrid = (props) => {
 
   let getGem = renderRandGem()
 
-
-  console.log(getGem)
-  console.log(getGem + 1)
   return(
 
     <div style={{ backgroundColor: 'white'}}>
@@ -32,9 +30,11 @@ const CityGemsGrid = (props) => {
         <Segment>
           <Grid columns={2} divided>
             <Grid.Row>
-              <Grid.Column>
-                <h1>Know a cool spot </h1>
-                <h3>add a gem</h3>
+              <Grid.Column textAlign='center' >
+                <h2 style={{fontFamily: 'Rock Salt, sans-serif'}}>Trings </h2>
+                <h5 style={{fontFamily: 'Rock Salt, sans-serif'}}>Trendy x Things</h5>
+                <h5 style={{fontFamily: 'Rock Salt, sans-serif'}}>A place to find all the things in a city that aren't mainstream</h5>
+                <Image centered size='tiny' src={Diamond} alt='gem'/>
               </Grid.Column>
               <Grid.Column textAlign='center'>
                 <h2>Spotlight Gem 🔦</h2>

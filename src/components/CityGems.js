@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
-// import CityGemsDisplay from './CityGemsDisplay'
+
 import { Card, Image, Rating } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-// <Card.Description>{props.gem.description}</Card.Description>
+
 
 const cgFont = {
   fontFamily: 'Cormorant Garamond, serif'

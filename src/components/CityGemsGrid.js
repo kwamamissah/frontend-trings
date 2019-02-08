@@ -17,13 +17,14 @@ const CityGemsGrid = (props) => {
     let gems = props.gems
     let num = rand(gems)
     let gem = gems[num]
-    return gem
+    return num
   }
 
   let getGem = renderRandGem()
 
 
   console.log(getGem)
+  console.log(getGem + 1)
   return(
 
     <div style={{ backgroundColor: 'white'}}>
@@ -32,13 +33,13 @@ const CityGemsGrid = (props) => {
           <Grid columns={2} divided>
             <Grid.Row>
               <Grid.Column>
-                <h1>Have You Tried </h1>
-                <h1>↳</h1>
+                <h1>Know a cool spot </h1>
+                <h3>add a gem</h3>
               </Grid.Column>
               <Grid.Column textAlign='center'>
                 <h2>Spotlight Gem 🔦</h2>
                 <div>
-                {props.gems.slice(3,4).map(x => <CityGemsSpotlight key={x.id} id={x.id}  />)}
+                {props.gems.slice(getGem, getGem + 1).map(x => <CityGemsSpotlight key={x.id} id={x.id}  />)}
                 </div>
               </Grid.Column>
             </Grid.Row>

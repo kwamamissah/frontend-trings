@@ -9,7 +9,7 @@ export default function(state = initial, action){
     case 'FETCH_GEMS':
       return {...state, gems: action.gems};
     case 'FILTER_GEMS':
-      let filtered = state.gems.filter(gem => gem.category_id === action.category);
+      let filtered = state.gems.filter(gem => gem.category.name.includes(action.category));
       debugger
       return {...state, filterGems: filtered}
     default:

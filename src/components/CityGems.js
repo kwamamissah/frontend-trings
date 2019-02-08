@@ -33,6 +33,7 @@ let CityGems = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps)
   let gem = state.cityGems.gems.find(x => x.id === ownProps.id)
   return { gem: gem }
 }

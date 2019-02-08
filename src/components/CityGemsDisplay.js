@@ -4,6 +4,13 @@ import { connect } from 'react-redux';
 import {  Grid, Image, Rating, Icon, Header,
           Divider, Sticky, Comment, Form, Button } from 'semantic-ui-react'
 
+const ykFont = {
+  fontFamily: 'Yanone Kaffeesatz, sans-serif'
+}
+
+const mwFont = {
+  fontFamily: 'Merriweather, serif'
+}
 
 const CityGemsDisplay = (props) => {
   if (props.gem === undefined) { return null; }
@@ -26,9 +33,9 @@ const CityGemsDisplay = (props) => {
 
 
           <Grid.Column>
-            <Header as='h5'>{props.gem.category_id.name}</Header>
-            <Header as='h1'>{props.gem.name}</Header>
-            <Header as='h4'>
+            <Header as='h5'>{props.gem.category.name}</Header>
+            <Header style={ykFont} as='h1'>{props.gem.name}</Header>
+            <Header style={mwFont} as='h4'>
               <Header.Content>
                 <Icon name='map pin'/>
               </Header.Content>
@@ -36,7 +43,7 @@ const CityGemsDisplay = (props) => {
                 {props.gem.address}
               </Header.Content>
             </Header>
-            <Header as='h4'>
+            <Header style={mwFont} as='h4'>
               <Header.Content>
                 <Icon name='time'/>
               </Header.Content>
@@ -44,7 +51,7 @@ const CityGemsDisplay = (props) => {
                 Hours:update data
               </Header.Content>
             </Header>
-            <Header as='h4'>
+            <Header style={mwFont} as='h4'>
               <Header.Content>
                 <Icon name='linkify'/>
               </Header.Content>
@@ -53,12 +60,12 @@ const CityGemsDisplay = (props) => {
               </Header.Content>
             </Header>
             <Divider section />
-            <Header as='h4'>
+            <Header style={mwFont} as='h4'>
               <Header.Content>
                 <em>About this gem</em>
               </Header.Content>
             </Header>
-            <Header as='h4'>
+            <Header style={mwFont} as='h4'>
               <Header.Content>
                 {props.gem.description}
               </Header.Content>
@@ -114,7 +121,7 @@ const CityGemsDisplay = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   let gemId = parseInt(ownProps.match.params.id)
-  let gem = state.cityGems.find(x => x.id === gemId)
+  let gem = state.cityGems.gems.find(x => x.id === gemId)
   return { gem: gem }
 }
 

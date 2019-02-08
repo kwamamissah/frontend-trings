@@ -11,7 +11,6 @@ import { login } from '../actions/user';
  top: '30%',
  width: '40%',
  textAlign: 'left',
- backgroundColor: 'green'
 }
 
 class Login extends Component {
@@ -37,6 +36,7 @@ class Login extends Component {
     .then(payload => {
       localStorage.setItem('token', payload.token)
       localStorage.setItem('username', payload.username)
+      localStorage.setItem('firstName', payload.firstName)
       this.props.dispatch(login(payload.username))
       this.props.history.push('/profile')
     })

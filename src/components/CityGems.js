@@ -5,21 +5,27 @@ import { Card, Image, Rating } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 // <Card.Description>{props.gem.description}</Card.Description>
 
+const cgFont = {
+  fontFamily: 'Cormorant Garamond, serif'
+}
+
+const ifFont = {
+  fontFamily: 'Caveat, cursive',
+  fontSize: '20px'
+}
+
 let CityGems = (props) => {
 
     return(
-      <Card as={Link} to={`/city_gems/${props.gem.id}`}>
+      <Card size='small' as={Link} to={`/city_gems/${props.gem.id}`}>
       <Image src={props.gem.img_url} />
       <Card.Content>
-        <Card.Header>{props.gem.name}</Card.Header>
-        <Card.Meta>
-          <span className='date'>{props.gem.address}</span>
-        </Card.Meta>
+        <Card.Header as='h1' style={ ifFont }>{props.gem.name}</Card.Header>
       </Card.Content>
       <Card.Content extra>
         <a>
           <Rating icon='heart' maxRating={1} /> <br/>
-          <Rating icon='star' maxRating={5} clearable />
+          <Rating icon='star' maxRating={5} disabled />
         </a>
       </Card.Content>
     </Card>
@@ -27,7 +33,7 @@ let CityGems = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let gem = state.cityGems.find(x => x.id === ownProps.id)
+  let gem = state.cityGems.gems.find(x => x.id === ownProps.id)
   return { gem: gem }
 }
 

@@ -11,7 +11,7 @@ const CityGemsGrid = (props) => {
   console.log(props.gems)
   return(
     <Card.Group itemsPerRow={4}>
-      {props.gems.slice(0,12).map(x => <CityGems key={x.id} id={x.id}  />)}
+      {props.gems.slice(0,16).map(x => <CityGems key={x.id} id={x.id}  />)}
     </Card.Group>
   )
 }
@@ -19,7 +19,9 @@ const CityGemsGrid = (props) => {
 const mapStateToProps = (state) => {
   console.log(state.cityGems)
   return {
-    gems: state.cityGems
+    gems: state.cityGems.gems,
+    filterGems: state.cityGems.filterGems
+
   }
 }
 

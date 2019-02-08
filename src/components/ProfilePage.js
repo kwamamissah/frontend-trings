@@ -76,7 +76,6 @@ class ProfilePage extends Component {
   }
 
   render(){
-    console.log(this.props.image)
     return(
 
       <div style={{ backgroundColor: 'white'}}>

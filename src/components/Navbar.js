@@ -14,14 +14,14 @@ const iconCss = {
   maxWidth: '25px',
   maxHeight: '25px'
 }
-const options = [
-  { key: 1, text: 'DayTime Events', value: 1 },
-  { key: 2, text: 'Bites', value: 2 },
-  { key: 3, text: 'Clothing', value: 3 },
-  { key: 4, text: 'Art', value: 4 },
-  { key: 5, text: 'Night Life', value: 5 },
-  { key: 6, text: 'Alternative Ideas', value: 6 }
-]
+// const options = [
+//   { key: 1, text: 'DayTime Events', value: 1 },
+//   { key: 2, text: 'Bites', value: 2 },
+//   { key: 3, text: 'Clothing', value: 3 },
+//   { key: 4, text: 'Art', value: 4 },
+//   { key: 5, text: 'Night Life', value: 5 },
+//   { key: 6, text: 'Alternative Ideas', value: 6 }
+// ]
 const loading = () => <Loader active inline='centered' />
 
 class Navbar extends Component {
@@ -66,7 +66,7 @@ class Navbar extends Component {
       return icon
     }
   }
-
+// add onClick to engage with dispatch in order to interact with filter
 
   render() {
     const { activeItem } = this.state
@@ -85,10 +85,17 @@ class Navbar extends Component {
           onClick={this.handleItemClick} /> }
 
         <Menu.Item compact as={Link} to='/city_gems/all'>
-          <Dropdown text='Gems' options={options} simple item
-          active={activeItem === 'gems'}
-          onClick={this.handleItemClick} />
-          </Menu.Item>
+          <Dropdown  simple item text='Gems' >
+           <Dropdown.Menu>
+             <Dropdown.Item as={Link} to='/city_gems/daytime'>DayTime Events</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/bites'>Bites</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/clothing'>Clothing</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/art'>Art</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/nightlife'>Night Life</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/altideas'>Alternative Ideas</Dropdown.Item>
+           </Dropdown.Menu>
+         </Dropdown>
+        </Menu.Item>
 
 
         <Menu.Item>

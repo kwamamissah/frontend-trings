@@ -23,10 +23,8 @@ const CityGemsDisplay = (props) => {
             <Sticky>
             <Image size='large' src={props.gem.img_url} />
             <br/>
-            <a>
               <Rating icon='heart' defaultRating={0} maxRating={1} /> <br/>
               <Rating defaultRating={3} maxRating={5} disabled />
-            </a>
             </Sticky>
           </Grid.Column>
 
@@ -83,9 +81,7 @@ const CityGemsDisplay = (props) => {
               </Header.Content>
             </Header>
             <br/>
-            <a>
               3.57 <Rating icon='star' defaultRating={3} maxRating={5} disabled />
-            </a>
           </Grid.Column>
 
           <Grid.Column>

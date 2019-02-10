@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Grid, Header, Segment, Loader, Image, Divider} from 'semantic-ui-react'
+import { Grid, Header, Segment, Loader, Divider} from 'semantic-ui-react'
+// import { fetchImages } from '../actions/cityGems'
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -19,13 +20,15 @@ let UNAPIKEY = 'de4f6d05437fd7ae0fa1315b1b8542b78a748392aa7560008b1fa826041f7e4c
 
 
 
-const center = {
- height: '100%',
- width: '100%',
- display: 'flex',
- position: 'fixed',
- justifyContent: 'center'
-}
+// const center = {
+//  height: '100%',
+//  width: '100%',
+//  display: 'flex',
+//  position: 'fixed',
+//  justifyContent: 'center'
+// }
+
+// this.props.dispatch(fetchImages(images))
 
 const loading = () => <Loader active inline='centered' />
 
@@ -33,7 +36,8 @@ class ProfilePage extends Component {
 
   state = {
     quote: [],
-    images: []
+    images: [],
+    query: 'art'
   }
 
   fetchQuote = () => {
@@ -43,9 +47,19 @@ class ProfilePage extends Component {
   }
 
   fetchImages = () => {
-    fetch(`https://api.unsplash.com/search/photos/?client_id=${UNAPIKEY}&per_page=15&orientation=landscape&query=art`)
+    fetch(`https://api.unsplash.com/search/photos/?client_id=${UNAPIKEY}&per_page=30&orientation=landscape&query=${this.state.query}`)
     .then(resp => resp.json())
-    .then(images => this.setState({ images }))
+    .then(data => {
+      let images = data.results.map((image) => {
+        return(
+          <div key={image.id}>
+            <img src={image.urls.small} />
+          </div>
+        )
+      })
+      this.setState({ images })
+      console.log('state', this.state.images)
+    })
   }
 
   componentDidMount(){
@@ -66,16 +80,17 @@ class ProfilePage extends Component {
     }
   }
 
-  getImages = () => {
-    let data = this.state.images.results
-    if (data === undefined) {
-      loading()
-    } else {
-      return data
-    }
+
+renderRandImage = () => {
+    let rand = (image) => Math.floor(Math.random()*image.length)
+    let images = this.state.images
+    let num = rand(images)
+    let show = images[num]
+    return show
   }
 
   render(){
+    console.log(this.renderRandImage())
     return(
 
       <div style={{ backgroundColor: 'white'}}>
@@ -91,16 +106,28 @@ class ProfilePage extends Component {
           <Grid.Row>
             <Grid.Column>
               <Header as='h1' textAlign='center' >
-              Hi {this.props.username}! <span>😀</span>
+              Hi {this.props.username}! <span role="img" aria-label="happy">😀</span>
               </Header>
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column divided>
-              <Carousel autoPlay infiniteLoop emulateTouch showArrows={false} showIndicators={false} showStatus={false} showThumbs={false} transitionTime={1000} >
+            <Grid.Column >
+              <Carousel autoPlay infiniteLoop emulateTouch showIndicators={false} showStatus={false} showThumbs={false} transitionTime={1000} >
                   <div>
-
+                    {this.renderRandImage()}
+                  </div>
+                  <div>
+                    {this.renderRandImage()}
+                  </div>
+                  <div>
+                    {this.renderRandImage()}
+                  </div>
+                  <div>
+                    {this.renderRandImage()}
+                  </div>
+                  <div>
+                    {this.renderRandImage()}
                   </div>
               </Carousel>
             </Grid.Column>
@@ -119,7 +146,7 @@ class ProfilePage extends Component {
           <Grid.Row divided>
             <Grid.Column>
               <Header as='h2' >
-              Favorites ♥️
+              Favorites <span role="img" aria-label="heart">♥️</span>
               </Header>
             </Grid.Column>
           </Grid.Row>
@@ -128,7 +155,7 @@ class ProfilePage extends Component {
           <Grid.Row divided>
             <Grid.Column>
               <Header as='h2' >
-              Most Recently Viewed 👀
+              Most Recently Viewed <span role="img" aria-label="eyes">👀</span>
               <Divider />
               </Header>
             </Grid.Column>
@@ -138,13 +165,11 @@ class ProfilePage extends Component {
           <Grid.Row divided>
             <Grid.Column>
               <Header as='h2' >
-              Gems of Interest 💎
+              Gems of Interest <span role="img" aria-label="diamond">💎</span>
               </Header>
             </Grid.Column>
           </Grid.Row>
           <Divider />
-
-
         </Grid>
       </div>
     )
@@ -152,7 +177,10 @@ class ProfilePage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { username: state.username }
+  return {
+    username: state.username,
+    images: state.cityGems.images
+   }
 }
 
 export default connect(mapStateToProps)(ProfilePage);

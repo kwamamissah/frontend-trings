@@ -84,7 +84,7 @@ class Navbar extends Component {
           active={activeItem === 'home'}
           onClick={this.handleItemClick} /> }
 
-        <Menu.Item compact as={Link} to='/city_gems/all'>
+        <Menu.Item as={Link} to='/city_gems/all'>
           <Dropdown  simple item text='Gems' >
            <Dropdown.Menu>
              <Dropdown.Item as={Link} to='/city_gems/daytime'>DayTime Events</Dropdown.Item>
@@ -107,7 +107,7 @@ class Navbar extends Component {
 
           <Menu.Item
            name='weather icon'>
-           <Image style={iconCss} src={`http://openweathermap.org/img/w/${this.getIcon()}.png`} as='icon'/>
+           <Image style={iconCss} src={`http://openweathermap.org/img/w/${this.getIcon()}.png`} />
          </Menu.Item>
 
         <Menu.Item

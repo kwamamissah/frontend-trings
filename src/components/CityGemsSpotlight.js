@@ -1,13 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 
-import { Header, Image, Rating } from 'semantic-ui-react'
+import { Header, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
-
-const cgFont = {
-  fontFamily: 'Cormorant Garamond, serif'
-}
 
 const ifFont = {
   fontFamily: 'Caveat, cursive',
@@ -19,7 +15,7 @@ let CityGemsSpotlight = (props) => {
     return(
       <div>
         <Link to={`/city_gems/${props.gem.id}`}>
-          <Image  centered size='small' src={props.gem.img_url} />
+          <Image  centered size='medium' src={props.gem.img_url} />
           <Header as='h1' style={ ifFont }>{props.gem.name}</Header>
         </Link>
     </div>

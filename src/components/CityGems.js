@@ -5,10 +5,6 @@ import { Card, Image, Rating } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 
-const cgFont = {
-  fontFamily: 'Cormorant Garamond, serif'
-}
-
 const ifFont = {
   fontFamily: 'Caveat, cursive',
   fontSize: '20px'
@@ -23,10 +19,8 @@ let CityGems = (props) => {
         <Card.Header as='h1' style={ ifFont }>{props.gem.name}</Card.Header>
       </Card.Content>
       <Card.Content extra>
-        <a>
-          <Rating icon='heart' maxRating={1} /> <br/>
-          <Rating icon='star' maxRating={5} disabled />
-        </a>
+        <Rating icon='heart' maxRating={1} /> <br/>
+        <Rating icon='star' maxRating={5} disabled />
       </Card.Content>
     </Card>
     )

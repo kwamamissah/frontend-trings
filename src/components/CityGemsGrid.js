@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Card, Segment, Icon, Grid, Divider, Loader, Image } from 'semantic-ui-react'
+import { Card, Segment, Icon, Grid, Loader, Image } from 'semantic-ui-react'
 
 import Diamond from '../greendiamond.png'
 import CityGems from '../components/CityGems'
@@ -17,7 +17,6 @@ const CityGemsGrid = (props) => {
   let renderRandGem = () => {
     let gems = props.gems
     let num = rand(gems)
-    let gem = gems[num]
     return num
   }
 
@@ -32,12 +31,12 @@ const CityGemsGrid = (props) => {
             <Grid.Row>
               <Grid.Column textAlign='center' >
                 <h2 style={{fontFamily: 'Rock Salt, sans-serif'}}>Trings </h2>
-                <h5 style={{fontFamily: 'Rock Salt, sans-serif'}}>Trendy x Things</h5>
-                <h5 style={{fontFamily: 'Rock Salt, sans-serif'}}>A place to find all the things in a city that aren't mainstream</h5>
+                <h3 style={{fontFamily: 'Rock Salt, sans-serif'}}>Trendy x Things</h3>
+                <h3 style={{fontFamily: 'Rock Salt, sans-serif'}}>A place to find all the things in a city that aren't mainstream</h3>
                 <Image centered size='tiny' src={Diamond} alt='gem'/>
               </Grid.Column>
-              <Grid.Column textAlign='center'>
-                <h2>Spotlight Gem 🔦</h2>
+              <Grid.Column textAlign='center' >
+                <h4 style={{fontFamily: 'Rock Salt, sans-serif'}}>Spotlight Gem <span role="img" aria-label="flashlight">🔦</span></h4>
                 <div>
                 {props.gems.slice(getGem, getGem + 1).map(x => <CityGemsSpotlight key={x.id} id={x.id}  />)}
                 </div>

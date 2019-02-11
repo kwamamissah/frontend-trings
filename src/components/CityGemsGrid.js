@@ -75,7 +75,9 @@ const CityGemsGrid = (props) => {
     </Segment.Group>
     <Segment basic>
       <Card.Group itemsPerRow={4}>
-        {props.gems.slice(0,16).map(x => <CityGems key={x.id} id={x.id}  />)}
+        {(props.filteredGems !== undefined) ?
+        props.filteredGems.slice(0,16).map(x => <CityGems key={x.id} id={x.id}  />) :
+        props.gems.slice(0,16).map(x => <CityGems key={x.id} id={x.id}  />)}
       </Card.Group>
     </Segment>
     </div>

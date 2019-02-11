@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/Navbar'
 import LandingPage from './components/LandingPage'
+import SignUp from './components/SignUp'
 import Login from './components/Login'
 import ProfilePage from './components/ProfilePage'
 import Unsplash from './components/Unsplash'
@@ -20,6 +21,7 @@ class App extends Component {
         <Switch>
           <Route path="/unsplash" component={Unsplash} />
           <Route path="/profile" component={ProfilePage} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
           <Route path="/city_gems" component={CityGemsData} />
           <Route path="/" component={LandingPage} />

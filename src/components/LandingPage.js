@@ -27,7 +27,8 @@ const button= {
 export default class LandingPage extends Component {
     render() {
         return (
-          <Carousel autoPlay infiniteLoop emulateTouch showArrows={false} showIndicators={false} showStatus={false} showThumbs={false} transitionTime={1000} >
+          <Carousel autoPlay infiniteLoop emulateTouch showArrows={false} showIndicators={false}
+             showStatus={false} showThumbs={false} transitionTime={1000} useKeyboardArrows={true} >
               <div>
                   <div className='legend' style={legendHack}>
                     <h1 style={{fontSize: '50px', fontFamily: 'Rock Salt, sans-serif'}}> Trings</h1>

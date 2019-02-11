@@ -8,13 +8,16 @@ import { login } from '../actions/user';
 
  const form = {position: 'absolute',
  left: "30%",
- top: '30%',
+ top: '20%',
  width: '40%',
  textAlign: 'left',
 }
 
-class Login extends Component {
+class SignUp extends Component {
   state = {
+  firstName: "",
+  lastName: "",
+  username: "",
   email: "",
   password: ""
 }
@@ -25,7 +28,7 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch(`${API}/login`, {
+    fetch(`${API}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,7 +49,19 @@ render() {
     return (
 
       <Form onSubmit={(e) => this.handleSubmit(e)} style={form}>
-        <h1>Login</h1>
+        <h1>Sign Up</h1>
+       <Form.Field>
+         <label>First Name</label>
+         <input type='text' placeholder='First Name...' name='firstName' onChange={(e) => this.handleChange(e)} />
+       </Form.Field>
+       <Form.Field>
+         <label>Last Name</label>
+         <input type='text' placeholder='Last Name...' name='lastName' onChange={(e) => this.handleChange(e)} />
+       </Form.Field>
+       <Form.Field>
+         <label>Username</label>
+         <input type='text' placeholder='Username...' name='username' onChange={(e) => this.handleChange(e)} />
+       </Form.Field>
        <Form.Field>
          <label>Email</label>
          <input type='text' placeholder='Email...' name='email' onChange={(e) => this.handleChange(e)} />
@@ -62,4 +77,4 @@ render() {
 
 }
 
-export default connect()(Login);
+export default connect()(SignUp);

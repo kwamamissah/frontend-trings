@@ -18,16 +18,11 @@ let CityGems = (props) => {
       <Card.Content>
         <Card.Header as='h1' style={ ifFont }>{props.gem.name}</Card.Header>
       </Card.Content>
-      <Card.Content extra>
-        <Rating icon='heart' maxRating={1} /> <br/>
-        <Rating icon='star' maxRating={5} disabled />
-      </Card.Content>
     </Card>
     )
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps)
   let gem = state.cityGems.gems.find(x => x.id === ownProps.id)
   return { gem: gem }
 }

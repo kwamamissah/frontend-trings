@@ -10,7 +10,6 @@ import CityGemsSpotlight from '../components/CityGemsSpotlight'
 const CityGemsGrid = (props) => {
 
   if (props.gems === undefined) { return <Loader active inline='centered' />}
-  console.log(props.gems)
 
   let rand = (gem) => Math.floor(Math.random()*gem.length)
 
@@ -21,6 +20,10 @@ const CityGemsGrid = (props) => {
   }
 
   let getGem = renderRandGem()
+
+  let handleClick = (e) => {
+    console.log(e.target)
+  }
 
   return(
 
@@ -48,22 +51,22 @@ const CityGemsGrid = (props) => {
 
 
       <Segment.Group raised compact horizontal style={{border: '2px solid black'}}>
-      <Segment textAlign='center'>
+      <Segment textAlign='center' name='DayTime Events' onClick={(e) => handleClick(e)}>
         <Icon size='large' color='yellow' circular name='sun'/> <br /> DayTime Events
       </Segment>
-      <Segment textAlign='center'>
+      <Segment textAlign='center' onClick={(e) => handleClick(e)}>
         <Icon size='large' color='yellow' circular name='food'/> <br /> Bites
       </Segment>
-      <Segment textAlign='center'>
+      <Segment textAlign='center' onClick={(e) => handleClick(e)}>
         <Icon size='large' color='yellow' circular name='cart plus'/> <br /> Clothing
       </Segment>
-      <Segment textAlign='center'>
+      <Segment textAlign='center' onClick={(e) => handleClick(e)}>
         <Icon size='large' color='yellow' circular name='camera'/> <br /> Art
       </Segment>
-      <Segment textAlign='center'>
+      <Segment textAlign='center' onClick={(e) => handleClick(e)}>
         <Icon size='large' color='yellow' circular name='glass martini'/> <br /> Night Life
       </Segment>
-      <Segment textAlign='center'>
+      <Segment textAlign='center' onClick={(e) => handleClick(e)}>
         <Icon size='large' color='yellow' circular name='street view'/> <br /> Alternative Ideas
       </Segment>
     </Segment.Group>

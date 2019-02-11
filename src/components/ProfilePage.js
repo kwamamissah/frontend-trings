@@ -7,26 +7,12 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 
-//creates a span at the top of page that greets user Good Morning or Happy Day of Week user
-//creates a span under initial span that retrieves and displays QOD - format *beige background + i
-
-//create a span under that just for a centered profile pic
 //create a section for Favorites
 //create a section for Save gems
 //create a section for Recommended Gems(random picks not in Fav or Saved)
 
 let QUOTEAPI = `http://quotes.rest/qod.json`
 let UNAPIKEY = 'de4f6d05437fd7ae0fa1315b1b8542b78a748392aa7560008b1fa826041f7e4c'
-
-
-
-// const center = {
-//  height: '100%',
-//  width: '100%',
-//  display: 'flex',
-//  position: 'fixed',
-//  justifyContent: 'center'
-// }
 
 // this.props.dispatch(fetchImages(images))
 
@@ -37,7 +23,8 @@ class ProfilePage extends Component {
   state = {
     quote: [],
     images: [],
-    query: 'art'
+    hour: null,
+    query: 'mural'
   }
 
   fetchQuote = () => {
@@ -58,13 +45,22 @@ class ProfilePage extends Component {
         )
       })
       this.setState({ images })
-      console.log('state', this.state.images)
     })
   }
+
+  getTime = () => {
+  let date = new Date();
+  let hour = date.getHours()
+  this.setState({
+     hour
+  });
+ }
+
 
   componentDidMount(){
     this.fetchQuote()
     this.fetchImages()
+    this.getTime()
   }
 
 
@@ -90,30 +86,41 @@ renderRandImage = () => {
   }
 
   render(){
-    console.log(this.renderRandImage())
+console.log(this.state.hour)
     return(
 
       <div style={{ backgroundColor: 'white'}}>
-        <Grid container style={{ padding: '3em 0em', width: '80%'}}>
+        <Grid container style={{ padding: '2em 0em', width: '80%'}}>
           <Grid.Row>
             <Grid.Column>
-              <Segment style={{backgroundColor: '#f5f5dc'}}>
+              <Segment raised style={{backgroundColor: '#f5f5dc'}}>
                 <p style={{textAlign: 'center', fontFamily: 'Lora, sans-serif'}}><strong>quote of the day:</strong> {this.getQOD()}</p>
               </Segment>
             </Grid.Column>
           </Grid.Row>
+          <Divider hidden/>
 
           <Grid.Row>
             <Grid.Column>
-              <Header as='h1' textAlign='center' >
-              Hi {this.props.username}! <span role="img" aria-label="happy">😀</span>
+              <Header as='h1' textAlign='center' style={{ fontFamily: 'Caveat, cursive' }} >
+                {this.state.hours < 12 ?
+              `Good Morning ${this.props.username} ☀️` :
+              `Good Evening ${this.props.username} 🌑` }
               </Header>
             </Grid.Column>
           </Grid.Row>
+          <Divider section/>
 
           <Grid.Row>
-            <Grid.Column >
-              <Carousel autoPlay infiniteLoop emulateTouch showIndicators={false} showStatus={false} showThumbs={false} transitionTime={1000} >
+            <Grid.Column style={{left: '25%'}}>
+              <Carousel width="50%" autoPlay infiniteLoop emulateTouch useKeyboardArrows={true} showIndicators={false}
+                 showStatus={false} showArrows={false} showThumbs={false} transitionTime={1000} dynamicHeight={true} >
+                  <div textAlign='center'>
+                    {this.renderRandImage()}
+                  </div>
+                  <div>
+                    {this.renderRandImage()}
+                  </div>
                   <div>
                     {this.renderRandImage()}
                   </div>
@@ -132,11 +139,12 @@ renderRandImage = () => {
               </Carousel>
             </Grid.Column>
           </Grid.Row>
+          <Divider hidden/>
 
 
           <Grid.Row style={{ padding: '3em 0em' }}>
             <Grid.Column>
-              <Header as='h1' textAlign='center' >
+              <Header as='h1' textAlign='center' style={{fontFamily: 'Rock Salt, sans-serif'}} >
               My Explore Zone
               </Header>
             </Grid.Column>
@@ -145,7 +153,7 @@ renderRandImage = () => {
 
           <Grid.Row divided>
             <Grid.Column>
-              <Header as='h2' >
+              <Header as='h2' style={{ fontFamily: 'Caveat, cursive' }} >
               Favorites <span role="img" aria-label="heart">♥️</span>
               </Header>
             </Grid.Column>
@@ -154,7 +162,7 @@ renderRandImage = () => {
 
           <Grid.Row divided>
             <Grid.Column>
-              <Header as='h2' >
+              <Header as='h2' style={{ fontFamily: 'Caveat, cursive' }} >
               Most Recently Viewed <span role="img" aria-label="eyes">👀</span>
               <Divider />
               </Header>
@@ -164,7 +172,7 @@ renderRandImage = () => {
 
           <Grid.Row divided>
             <Grid.Column>
-              <Header as='h2' >
+              <Header as='h2'style={{ fontFamily: 'Caveat, cursive' }} >
               Gems of Interest <span role="img" aria-label="diamond">💎</span>
               </Header>
             </Grid.Column>

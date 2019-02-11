@@ -114,10 +114,11 @@ class Navbar extends Component {
           name={this.getTemp()}/>
 
         <Menu.Menu position='right'>
+          {this.props.username ? null :
           <Menu.Item as={Link} to='/signup'
             name='signup'
             active={activeItem === 'signup'}
-            onClick={this.handleItemClick} />
+            onClick={this.handleItemClick} /> }
 
           {this.props.username ?
             <Menu.Item as={Link} to='/'

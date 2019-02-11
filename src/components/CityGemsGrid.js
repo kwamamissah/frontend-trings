@@ -7,6 +7,8 @@ import Diamond from '../greendiamond.png'
 import CityGems from '../components/CityGems'
 import CityGemsSpotlight from '../components/CityGemsSpotlight'
 
+import { filterGems } from '../actions/cityGems'
+
 const CityGemsGrid = (props) => {
 
   if (props.gems === undefined) { return <Loader active inline='centered' />}
@@ -22,8 +24,8 @@ const CityGemsGrid = (props) => {
   let getGem = renderRandGem()
 
   let handleClick = (e) => {
-    console.log(e.target)
-    // this.props.dispatch(filterGems(e.target))
+    console.log(e.target.textContent.trim())
+    props.dispatch(filterGems(e.target.textContent.trim()))
   }
 
   return(

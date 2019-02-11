@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Grid, Card, Header, Segment, Loader, Divider} from 'semantic-ui-react'
-// import { fetchImages } from '../actions/cityGems'
+
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -13,7 +13,7 @@ import CityGems from '../components/CityGems'
 //create a section for Recommended Gems(random picks not in Fav or Saved)
 
 let QUOTEAPI = `http://quotes.rest/qod.json`
-let UNAPIKEY = 'de4f6d05437fd7ae0fa1315b1b8542b78a748392aa7560008b1fa826041f7e4c'
+
 
 // this.props.dispatch(fetchImages(images))
 
@@ -35,7 +35,7 @@ class ProfilePage extends Component {
   }
 
   fetchImages = () => {
-    fetch(`https://api.unsplash.com/search/photos/?client_id=${UNAPIKEY}&per_page=30&orientation=landscape&query=${this.state.query}`)
+    fetch(`https://api.unsplash.com/search/photos/?client_id=${process.env.REACT_APP_UNAPIKEY}&per_page=30&orientation=landscape&query=${this.state.query}`)
     .then(resp => resp.json())
     .then(data => {
       let images = data.results.map((image) => {
@@ -86,8 +86,18 @@ renderRandImage = () => {
     return show
   }
 
+  renderRandGem = () => {
+      let rand = (gem) => Math.floor(Math.random()*gem.length)
+      let gems = this.props.gems
+      let num = rand(gems)
+      let show = gems[num]
+      return show
+    }
+
   render(){
-console.log(this.props.gems)
+
+    let getGem = this.renderRandGem()
+
     return(
 
       <div style={{ backgroundColor: 'white'}}>
@@ -104,7 +114,7 @@ console.log(this.props.gems)
           <Grid.Row>
             <Grid.Column>
               <Header as='h1' textAlign='center' style={{ fontFamily: 'Caveat, cursive' }} >
-                {this.state.hours < 12 ?
+                {this.state.hour < 12 ?
               `Good Morning ${this.props.username} ☀️` :
               `Good Evening ${this.props.username} 🌑` }
               </Header>
@@ -176,8 +186,8 @@ console.log(this.props.gems)
               <Header as='h2'style={{ fontFamily: 'Caveat, cursive' }} >
               Gems of Interest <span role="img" aria-label="diamond">💎</span>
               </Header>
-              <Card.Group itemsPerRow={6}>
-                {this.props.gems.slice(0,6).map(x => <CityGems key={x.id} id={x.id}  />)}
+              <Card.Group itemsPerRow={5}>
+                {this.props.gems.slice(0,5).map(x => <CityGems key={x.id} id={x.id}  />)}
               </Card.Group>
             </Grid.Column>
           </Grid.Row>

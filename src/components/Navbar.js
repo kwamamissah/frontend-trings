@@ -6,7 +6,6 @@ import { logout} from '../actions/user';
 
 let city = 'Atlanta'
 let APIKEY = `5bbb1b66f4a5c0d2731ed0a9d297cb63`
-const WeatherAPI = `api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKEY}`
 
 const iconCss = {
   height: 'auto',
@@ -34,7 +33,7 @@ class Navbar extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   fetchWeather = (city = this.state.city) => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=5bbb1b66f4a5c0d2731ed0a9d297cb63&units=imperial`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${process.env.REACT_APP_APPID}&units=imperial`)
     .then(resp => resp.json())
     .then(weather => this.setState({weather: weather}))
   }

@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
 
-import { Card, Image, Rating } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+
+import { viewedGems } from '../actions/cityGems'
 
 
 const ifFont = {
@@ -12,8 +14,13 @@ const ifFont = {
 
 let CityGems = (props) => {
 
+  let onClick = (gem) => {
+    props.dispatch(viewedGems(gem))
+  }
+
     return(
-      <Card size='small' as={Link} to={`/city_gems/${props.gem.id}`}>
+      <Card size='small' as={Link} to={`/city_gems/${props.gem.id}`}
+        onClick={() => onClick(props.gem)}>
       <Image src={props.gem.img_url} />
       <Card.Content>
         <Card.Header as='h1' style={ ifFont }>{props.gem.name}</Card.Header>

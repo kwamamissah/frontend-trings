@@ -175,10 +175,13 @@ renderRandImage = () => {
             <Grid.Column>
               <Header as='h2' style={{ fontFamily: 'Caveat, cursive' }} >
               Most Recently Viewed <span role="img" aria-label="eyes">👀</span>
-              <Divider />
               </Header>
+              <Card.Group itemsPerRow={5}>
+                {this.props.viewedGems.slice(0,5).map(x => <CityGems key={x.id} id={x.id}  />)}
+              </Card.Group>
             </Grid.Column>
           </Grid.Row>
+          <Divider />
 
 
           <Grid.Row divided>
@@ -201,7 +204,8 @@ renderRandImage = () => {
 const mapStateToProps = (state) => {
   return {
     username: state.username,
-    gems: state.cityGems.gems
+    gems: state.cityGems.gems,
+    viewedGems: state.cityGems.viewedGems
    }
 }
 

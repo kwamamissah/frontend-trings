@@ -11,3 +11,7 @@ export function filterGems(category = 1){
 export function fetchImages(images){
   return { type: 'FETCH_IMAGES', images: images }
 }
+
+export function viewedGems(gem){
+  return { type: 'VIEWED_GEMS', gem: gem}
+}

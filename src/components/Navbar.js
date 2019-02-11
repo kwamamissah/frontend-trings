@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout} from '../actions/user';
 
-let city = 'Atlanta'
-let APIKEY = `5bbb1b66f4a5c0d2731ed0a9d297cb63`
 
 const iconCss = {
   height: 'auto',

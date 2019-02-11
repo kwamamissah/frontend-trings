@@ -17,6 +17,7 @@ class Login extends Component {
   state = {
   email: "",
   password: ""
+
 }
 
   handleChange = (e) => {
@@ -34,10 +35,14 @@ class Login extends Component {
     })
     .then(resp => resp.json())
     .then(payload => {
-      localStorage.setItem('token', payload.token)
-      localStorage.setItem('username', payload.username)
-      this.props.dispatch(login(payload.username))
-      this.props.history.push('/profile')
+      if (payload.errors) {
+        //set state to errors.
+      } else {
+        localStorage.setItem('token', payload.token)
+        localStorage.setItem('username', payload.username)
+        this.props.dispatch(login(payload.username))
+        this.props.history.push('/profile')
+      }
     })
   }
 

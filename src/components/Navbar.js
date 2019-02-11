@@ -3,6 +3,7 @@ import { Image, Menu, Dropdown, Loader, Input } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout} from '../actions/user';
+import { filterGems } from '../actions/cityGems'
 
 
 const iconCss = {
@@ -29,6 +30,11 @@ class Navbar extends Component {
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  setCategory = (e) => {
+    console.log(e.target.textContent.trim())
+    this.props.dispatch(filterGems(e.target.textContent.trim()))
+  }
 
   fetchWeather = (city = this.state.city) => {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${process.env.REACT_APP_APPID}&units=imperial`)
@@ -84,12 +90,12 @@ class Navbar extends Component {
         <Menu.Item as={Link} to='/city_gems/all'>
           <Dropdown  simple item text='Gems' >
            <Dropdown.Menu>
-             <Dropdown.Item as={Link} to='/city_gems/daytime'>DayTime Events</Dropdown.Item>
-             <Dropdown.Item as={Link} to='/city_gems/bites'>Bites</Dropdown.Item>
-             <Dropdown.Item as={Link} to='/city_gems/clothing'>Clothing</Dropdown.Item>
-             <Dropdown.Item as={Link} to='/city_gems/art'>Art</Dropdown.Item>
-             <Dropdown.Item as={Link} to='/city_gems/nightlife'>Night Life</Dropdown.Item>
-             <Dropdown.Item as={Link} to='/city_gems/altideas'>Alternative Ideas</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/daytime' onClick={(e) => this.setCategory(e)}>DayTime Events</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/bites' onClick={(e) => this.setCategory(e)}>Bites</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/clothing' onClick={(e) => this.setCategory(e)}>Clothing</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/art'onClick={(e) => this.setCategory(e)}>Art</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/nightlife' onClick={(e) => this.setCategory(e)}>Night Life</Dropdown.Item>
+             <Dropdown.Item as={Link} to='/city_gems/altideas' onClick={(e) => this.setCategory(e)}>Alternative Ideas</Dropdown.Item>
            </Dropdown.Menu>
          </Dropdown>
         </Menu.Item>

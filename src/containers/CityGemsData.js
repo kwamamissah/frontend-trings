@@ -20,6 +20,12 @@ class CityGemsData extends Component {
   render(){
     return (
       <Switch>
+        <Route path="/city_gems/altideas" component={CityGemsGrid} />
+        <Route path="/city_gems/nightlife" component={CityGemsGrid} />
+        <Route path="/city_gems/art" component={CityGemsGrid} />
+        <Route path="/city_gems/clothing" component={CityGemsGrid} />
+        <Route path="/city_gems/bites" component={CityGemsGrid} />
+        <Route path="/city_gems/daytime" component={CityGemsGrid} />
         <Route path="/city_gems/all" component={CityGemsGrid} />
         <Route path="/city_gems/:id" component={CityGemsDisplay} />
       </Switch>

@@ -16,6 +16,8 @@ export default function(state = initial, action){
         if(!viewed) {
           let recentlyViewed = [action.gem, ...state.viewedGems ]
           return {...state, viewedGems: recentlyViewed}
+        } else {
+          return state;
         }
     default:
       return state;

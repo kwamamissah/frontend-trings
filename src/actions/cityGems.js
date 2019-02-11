@@ -4,7 +4,7 @@ export function fetchGems(gems){
   return { type: 'FETCH_GEMS', gems: gems}
 }
 
-export function filterGems(category = 1){
+export function filterGems(category){
   return { type: 'FILTER_GEMS', category: category }
 }
 

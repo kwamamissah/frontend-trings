@@ -41,18 +41,27 @@ export default class LandingPage extends Component {
                 <div className='legend' style={legendHack}>
                     <h1 style={{fontSize: '50px', fontFamily: 'Rock Salt, sans-serif'}}> Trings</h1>
                     <h4 style={{fontSize: '20px', fontFamily: 'Rock Salt, sans-serif'}}> Unlock the gems in your city </h4>
-                    <button style={button}>Explore!</button>
+                    <Link to='/city_gems/all'><button style={button}>Explore</button></Link>
                  </div>
-                  <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="club" />
+                  <img src="https://images.unsplash.com/photo-1543746379-7f4f6228a6da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="art exhibit" />
               </div>
               <div>
               <div className='legend' style={legendHack}>
                   <h1 style={{fontSize: '50px', fontFamily: 'Rock Salt, sans-serif'}}> Trings</h1>
                   <h4 style={{fontSize: '20px', fontFamily: 'Rock Salt, sans-serif'}}> Unlock the gems in your city </h4>
-                  <button style={button}>Engage</button>
+                  <Link to='/city_gems/all'><button style={button}>Engage</button></Link>
                </div>
                   <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="party" />
               </div>
+              <div>
+                  <div className='legend' style={legendHack}>
+                    <h1 style={{fontSize: '50px', fontFamily: 'Rock Salt, sans-serif'}}> Trings</h1>
+                    <h4 style={{fontSize: '20px', fontFamily: 'Rock Salt, sans-serif'}}> Unlock the gems in your city </h4>
+                    <Link to='/city_gems/all'><button style={button}>Discover</button></Link>
+                   </div>
+                  <img src="https://images.unsplash.com/photo-1543788235-ccce98118c37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="nature"/>
+              </div>
+
           </Carousel>
         );
     }

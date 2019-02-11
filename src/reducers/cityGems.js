@@ -1,8 +1,7 @@
 const initial = {
   gems: [],
-  images: [],
   filter: null,
-  filterGems: []
+  filteredGems: []
 }
 
 export default function(state = initial, action){
@@ -14,7 +13,7 @@ export default function(state = initial, action){
     case 'FILTER_GEMS':
       let filtered = state.gems.filter(gem => gem.category.name.includes(action.category));
       debugger
-      return {...state, filterGems: filtered}
+      return {...state, filteredGems: filtered}
     default:
       return state;
   }

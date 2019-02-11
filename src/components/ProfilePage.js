@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Grid, Header, Segment, Loader, Divider} from 'semantic-ui-react'
+import { Grid, Card, Header, Segment, Loader, Divider} from 'semantic-ui-react'
 // import { fetchImages } from '../actions/cityGems'
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import CityGems from '../components/CityGems'
 
 
 //create a section for Favorites
@@ -86,7 +87,7 @@ renderRandImage = () => {
   }
 
   render(){
-console.log(this.state.hour)
+console.log(this.props.gems)
     return(
 
       <div style={{ backgroundColor: 'white'}}>
@@ -175,6 +176,9 @@ console.log(this.state.hour)
               <Header as='h2'style={{ fontFamily: 'Caveat, cursive' }} >
               Gems of Interest <span role="img" aria-label="diamond">💎</span>
               </Header>
+              <Card.Group itemsPerRow={6}>
+                {this.props.gems.slice(0,6).map(x => <CityGems key={x.id} id={x.id}  />)}
+              </Card.Group>
             </Grid.Column>
           </Grid.Row>
           <Divider />
@@ -187,7 +191,7 @@ console.log(this.state.hour)
 const mapStateToProps = (state) => {
   return {
     username: state.username,
-    images: state.cityGems.images
+    gems: state.cityGems.gems
    }
 }
 

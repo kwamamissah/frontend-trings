@@ -23,6 +23,7 @@ const CityGemsGrid = (props) => {
 
   let handleClick = (e) => {
     console.log(e.target)
+    // this.props.dispatch(filterGems(e.target))
   }
 
   return(
@@ -82,7 +83,7 @@ const CityGemsGrid = (props) => {
 const mapStateToProps = (state) => {
   return {
     gems: state.cityGems.gems,
-    filterGems: state.cityGems.filterGems
+    filteredGems: state.cityGems.filterGems
 
   }
 }

@@ -115,8 +115,8 @@ renderRandImage = () => {
             <Grid.Column>
               <Header as='h1' textAlign='center' style={{ fontFamily: 'Caveat, cursive' }} >
                 {this.state.hour < 12 ?
-              `Good Morning ${this.props.username} ☀️` :
-              `Good Evening ${this.props.username} 🌑` }
+              `Good Morning ${this.props.firstName} ☀️` :
+              `Good Evening ${this.props.firstName} 🌑` }
               </Header>
             </Grid.Column>
           </Grid.Row>
@@ -203,7 +203,7 @@ renderRandImage = () => {
 
 const mapStateToProps = (state) => {
   return {
-    username: state.username,
+    firstName: state.firstName,
     gems: state.cityGems.gems,
     viewedGems: state.cityGems.viewedGems
    }

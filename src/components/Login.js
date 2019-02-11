@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Header } from 'semantic-ui-react'
 
 import API from '../backend/data'
 import { login } from '../actions/user';
@@ -16,8 +16,8 @@ import { login } from '../actions/user';
 class Login extends Component {
   state = {
   email: "",
-  password: ""
-
+  password: "",
+  erros: ""
 }
 
   handleChange = (e) => {
@@ -36,11 +36,13 @@ class Login extends Component {
     .then(resp => resp.json())
     .then(payload => {
       if (payload.errors) {
-        //set state to errors.
+        this.setState({ errors: payload.errors})
+        this.props.history.push('/login')
       } else {
         localStorage.setItem('token', payload.token)
         localStorage.setItem('username', payload.username)
-        this.props.dispatch(login(payload.username))
+        localStorage.setItem('firstName', payload.first_name)
+        this.props.dispatch(login(payload.first_name))
         this.props.history.push('/profile')
       }
     })
@@ -50,7 +52,9 @@ class Login extends Component {
 render() {
     return (
 
+
       <Form onSubmit={(e) => this.handleSubmit(e)} style={form}>
+        <Header style={{color: 'red'}}>{this.state.errors ? this.state.errors : null}</Header>
         <h1>Login</h1>
        <Form.Field>
          <label>Email</label>

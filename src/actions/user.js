@@ -1,5 +1,5 @@
-export function login(username, firstName){
-  return { type: 'LOGIN_USER', username: username, firstName: firstName}
+export function login(username, firstName, id){
+  return { type: 'LOGIN_USER', username: username, firstName: firstName, id: id}
 }
 
 export function logout(history){

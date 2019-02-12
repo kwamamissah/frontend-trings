@@ -1,7 +1,8 @@
 const initial = {
   gems: [],
   filteredGems: [],
-  viewedGems: []
+  favGems: [],
+  viewedGems: [],
 }
 
 export default function(state = initial, action){
@@ -11,6 +12,9 @@ export default function(state = initial, action){
     case 'FILTER_GEMS':
       let filtered = state.gems.filter(gem => gem.category.name.includes(action.category));
       return {...state, filterGems: filtered}
+    case 'FAVORITE_GEMS':
+      // let filterLikes = state.gems.filter(gem => gem.likes.includes()
+      //  return {...state, favGems: filterLikes}
     case 'VIEWED_GEMS':
       let viewed = state.viewedGems.find(x => x.id === action.gem.id)
         if(!viewed) {

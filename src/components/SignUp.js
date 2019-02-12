@@ -34,7 +34,7 @@ class SignUp extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({ user: this.state })
     })
     .then(resp => resp.json())
     .then(payload => {

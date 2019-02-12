@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {  Grid, Image, Rating, Icon, Header,
-          Divider, Sticky, Comment, Form, Button } from 'semantic-ui-react'
+          Divider, Comment, Form, Button, Checkbox } from 'semantic-ui-react'
 import API from '../backend/data'
 
 const ykFont = {
@@ -12,34 +12,61 @@ const mwFont = {
   fontFamily: 'Merriweather, serif'
 }
 
-// fetch(`${API}/likes`, {
-//   method: 'POST',
-//   headers: {
-//   'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify()
-// })
-
-// if (props.gem === undefined) { return null; }
-class CityGemsDisplay extends Component {
-
-
-  handleClick = () => {
-    debugger
+function formatTimestamp(timestamp) {
+  var options = {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
   }
+  return timestamp.toLocaleTimeString("en-us", options)
+}
+
+
+class CityGemsDisplay extends Component {
+  state = {
+    content: "",
+    rating: 0
+  }
+
+
+  handleLike = (e) => {
+    fetch(`${API}/city_gems/${this.props.gem.id}/likes`, {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      "Access-Token": localStorage.getItem("token")
+      },
+      body: JSON.stringify({user_id: this.props.firstName})
+    })
+    this.setState({ rating: 1 })
+  }
+
+
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value})
+  }
+
+
   render(){
     if (this.props.gem === undefined) { return null; }
+
+    let findLike = this.props.gem.likes.find(x => x.user_id === parseInt(localStorage.id))
+    let like = (!!findLike) ? 1 : this.state.rating
+
     return(
       <div style={{ backgroundColor: 'white'}}>
         <Grid columns={2} style={{ padding: '3em 3em', width: '100%', position: 'relative'}}>
           <Grid.Row divided >
             <Grid.Column centered>
-              <Sticky>
               <Image size='large' src={this.props.gem.img_url} />
               <br/>
-                <Rating icon='heart' defaultRating={0} maxRating={1} onClick={() => this.handleClick()} /> <br/>
-                <Rating defaultRating={3} maxRating={5} disabled />
-              </Sticky>
+              <Rating icon='heart' rating={like} maxRating={1} onClick={(e) => this.handleLike(e)} />
+              <br/>
+              <Rating defaultRating={3} maxRating={5} disabled />
             </Grid.Column>
 
 
@@ -68,7 +95,7 @@ class CityGemsDisplay extends Component {
                   <Icon name='linkify'/>
                 </Header.Content>
                 <Header.Content>
-              <a href={this.props.gem.website} target="_blank">{this.props.gem.website}</a>
+              <a href={this.props.gem.website} target="_blank" rel="noopener noreferrer">{this.props.gem.website}</a>
                 </Header.Content>
               </Header>
               <Divider section />
@@ -105,18 +132,18 @@ class CityGemsDisplay extends Component {
               </Header>
               <Comment>
                 <Comment.Content>
-                  <Comment.Author as='a'>User</Comment.Author>
+                  <Comment.Author as='a'>{this.props.firstName}</Comment.Author>
                   <Comment.Metadata>
                     <div>Today at 5:42PM</div>
                   </Comment.Metadata>
-                  <Comment.Text>How artistic!</Comment.Text>
+                  <Comment.Text>{this.state.comment}</Comment.Text>
                   <Comment.Actions>
                     <Comment.Action>Reply</Comment.Action>
                   </Comment.Actions>
                 </Comment.Content>
               </Comment>
               <Form reply>
-                <Form.TextArea />
+                <Form.TextArea name='content' onChange={e => this.handleChange(e)}/>
                 <Button content='Add Comment' labelPosition='left' icon='edit' primary />
               </Form>
             </Comment.Group>
@@ -136,6 +163,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     gem: gem,
     firstName: state.firstName
+
   }
 }
 

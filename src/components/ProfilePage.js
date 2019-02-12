@@ -205,7 +205,8 @@ const mapStateToProps = (state) => {
   return {
     firstName: state.firstName,
     gems: state.cityGems.gems,
-    viewedGems: state.cityGems.viewedGems
+    viewedGems: state.cityGems.viewedGems,
+    favGems: state.cityGems.favGems
    }
 }
 

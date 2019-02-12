@@ -187,7 +187,7 @@ renderRandImage = () => {
           <Grid.Row divided>
             <Grid.Column>
               <Header as='h2'style={{ fontFamily: 'Caveat, cursive' }} >
-              Gems of Interest <span role="img" aria-label="diamond">💎</span>
+              Recommended Gems<span role="img" aria-label="diamond">💎</span>
               </Header>
               <Card.Group itemsPerRow={5}>
                 {this.props.gems.slice(0,5).map(x => <CityGems key={x.id} id={x.id}  />)}

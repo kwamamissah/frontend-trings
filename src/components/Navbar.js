@@ -69,14 +69,14 @@ class Navbar extends Component {
       return icon
     }
   }
-// add onClick to engage with dispatch in order to interact with filter
+
 
   render() {
     const { activeItem } = this.state
 
     return (
       <Menu inverted borderless style={{ margin: "0", fontFamily: 'Lora, serif'}} size='small'>
-        {this.props.username ?
+        {this.props.firstName ?
         <Menu.Item as={Link} to='/profile'
           name='home'
           active={activeItem === 'home'}
@@ -117,13 +117,13 @@ class Navbar extends Component {
           name={this.getTemp()}/>
 
         <Menu.Menu position='right'>
-          {this.props.username ? null :
+          {this.props.firstName ? null :
           <Menu.Item as={Link} to='/signup'
             name='signup'
             active={activeItem === 'signup'}
             onClick={this.handleItemClick} /> }
 
-          {this.props.username ?
+          {this.props.firstName ?
             <Menu.Item as={Link} to='/'
               name='logout'
               active={activeItem === 'logout'}
@@ -145,7 +145,7 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    username: state.username
+    firstName: state.firstName
    }
 }
 

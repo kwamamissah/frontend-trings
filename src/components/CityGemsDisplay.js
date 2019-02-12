@@ -28,6 +28,7 @@ function formatTimestamp(timestamp) {
 class CityGemsDisplay extends Component {
   state = {
     content: "",
+    errors: "",
     rating: 0
   }
 
@@ -44,10 +45,27 @@ class CityGemsDisplay extends Component {
     this.setState({ rating: 1 })
   }
 
+  handleComment = (e) => {
+    e.preventDefault()
+    fetch(`${API}/city_gems/${this.props.gem.id}/comments`, {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      "Access-Token": localStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        body: this.state.content,
+        user_id: this.props.firstName
+      })
+    })
+    e.reset()
+  }
+
 
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value})
+  this.setState({
+    [e.target.name]: e.target.value})
   }
 
 
@@ -64,7 +82,8 @@ class CityGemsDisplay extends Component {
             <Grid.Column centered>
               <Image size='large' src={this.props.gem.img_url} />
               <br/>
-              <Rating icon='heart' rating={like} maxRating={1} onClick={(e) => this.handleLike(e)} />
+              {(localStorage.length === 0 ) ? <Rating icon='heart' maxRating={1} disabled />
+            :<Rating icon='heart' rating={like} maxRating={1} onClick={(e) => this.handleLike(e)} />}
               <br/>
               <Rating defaultRating={3} maxRating={5} disabled />
             </Grid.Column>
@@ -131,19 +150,21 @@ class CityGemsDisplay extends Component {
                 Comments
               </Header>
               <Comment>
-                <Comment.Content>
-                  <Comment.Author as='a'>{this.props.firstName}</Comment.Author>
-                  <Comment.Metadata>
-                    <div>Today at 5:42PM</div>
-                  </Comment.Metadata>
-                  <Comment.Text>{this.state.comment}</Comment.Text>
-                  <Comment.Actions>
-                    <Comment.Action>Reply</Comment.Action>
-                  </Comment.Actions>
-                </Comment.Content>
+                {this.props.gem.comments.map(comment =>
+                  <Comment.Content>
+                    <Comment.Author as='a'>{comment.user_id.first_name}</Comment.Author>
+                    <Comment.Metadata>
+                      <div>Today at 5:42PM</div>
+                    </Comment.Metadata>
+                    <Comment.Text>{comment.body}</Comment.Text>
+                    <Comment.Actions>
+                      <Comment.Action>Reply</Comment.Action>
+                    </Comment.Actions>
+                  </Comment.Content>
+                )}
               </Comment>
-              <Form reply>
-                <Form.TextArea name='content' onChange={e => this.handleChange(e)}/>
+              <Form onSubmit={(e) => this.handleComment(e)} reply>
+                <Form.TextArea name='content' placeholder="Tell us what you think..." style={{height: '30%'}} onChange={e => this.handleChange(e)}/>
                 <Button content='Add Comment' labelPosition='left' icon='edit' primary />
               </Form>
             </Comment.Group>

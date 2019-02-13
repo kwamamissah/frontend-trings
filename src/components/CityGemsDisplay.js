@@ -4,6 +4,7 @@ import {  Grid, Image, Rating, Icon, Header,
           Divider, Comment, Form, Button, Checkbox } from 'semantic-ui-react'
 import API from '../backend/data'
 import { favGems } from '../actions/profile'
+import { displayComment } from '../actions/cityGems'
 
 const ykFont = {
   fontFamily: 'Yanone Kaffeesatz, sans-serif'
@@ -30,8 +31,13 @@ const button= {
 class CityGemsDisplay extends Component {
   state = {
     content: "",
+    comments: [],
     errors: "",
     rating: 0
+  }
+
+  componentDidMount(){
+    debugger
   }
 
 
@@ -49,6 +55,7 @@ class CityGemsDisplay extends Component {
   }
 
   handleComment = (e) => {
+    // call function that puts the comment on the page
     e.preventDefault()
     fetch(`${API}/city_gems/${this.props.gem.id}/comments`, {
       method: 'POST',
@@ -61,6 +68,8 @@ class CityGemsDisplay extends Component {
         user_id: this.props.firstName
       })
     })
+    .then(resp => resp.json())
+    .then(comment => this.props.dispatch(displayComment(comment)))
     e.target.reset()
   }
 
@@ -159,7 +168,7 @@ class CityGemsDisplay extends Component {
                   <Comment.Content>
                     <Comment.Author as='a'>{comment.user.username}</Comment.Author>
                     <Comment.Metadata>
-                      <div>Today at 5:42PM</div>
+                      <div>{comment.user.created_at}</div>
                     </Comment.Metadata>
                     <Comment.Text>{comment.body}</Comment.Text>
                   </Comment.Content>

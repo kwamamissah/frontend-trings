@@ -5,17 +5,13 @@ import { connect } from 'react-redux';
 import API from '../backend/data'
 import CityGemsGrid from '../components/CityGemsGrid'
 import CityGemsDisplay from '../components/CityGemsDisplay'
-import { fetchGems } from '../actions/cityGems'
+
 
 
 
 class CityGemsData extends Component {
 
-  componentDidMount(){
-    fetch(`${API}/city_gems`)
-    .then(resp => resp.json())
-    .then(gems => this.props.dispatch(fetchGems(gems)))
-  }
+
 
   render(){
     return (

@@ -193,7 +193,7 @@ renderRandImage = () => {
               Recommended Gems<span role="img" aria-label="diamond">💎</span>
               </Header>
               <Card.Group itemsPerRow={5}>
-                {this.props.gems.slice(0,5).map(x => <CityGems key={x.id} id={x.id}  />)}
+                {this.props.gems.slice(64,69).map(x => <CityGems key={x.id} id={x.id}  />)}
               </Card.Group>
             </Grid.Column>
           </Grid.Row>
@@ -209,7 +209,7 @@ const mapStateToProps = (state) => {
     firstName: state.firstName,
     gems: state.cityGems.gems,
     viewedGems: state.cityGems.viewedGems,
-    favGems: state.profile.favGems
+    favGems: state.profile.favs
    }
 }
 

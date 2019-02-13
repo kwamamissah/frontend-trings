@@ -19,3 +19,8 @@ export function viewedGems(gem){
 export function favGems(user){
   return { type: 'FAVORITE_GEMS', userId: user}
 }
+
+export function displayComment(comment){
+  console.log(comment)
+  return { type: 'DISPLAY_COMMENT', comment: comment}
+}

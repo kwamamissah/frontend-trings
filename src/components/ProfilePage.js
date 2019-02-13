@@ -27,6 +27,7 @@ class ProfilePage extends Component {
     hour: null,
     query: 'mural'
   }
+  
 
   fetchQuote = () => {
     fetch(QUOTEAPI)

@@ -13,7 +13,10 @@ export default function(state = initial, action){
       let filtered = state.gems.filter(gem => gem.category.name.includes(action.category));
       return {...state, filterGems: filtered}
     case 'FAVORITE_GEMS':
-      // let filterLikes = state.gems.filter(gem => gem.likes.includes()
+    debugger
+    // state.gems.filter(gem => gem.likes.length > 0)
+      // let likes = state.gems.filter(gem => gem.likes.length > 0)
+      // let filterLikes = likes.filter(gem => gem.user_id.includes(action.userId))
       //  return {...state, favGems: filterLikes}
     case 'VIEWED_GEMS':
       let viewed = state.viewedGems.find(x => x.id === action.gem.id)

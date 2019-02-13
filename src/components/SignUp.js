@@ -15,8 +15,8 @@ import { login } from '../actions/user';
 
 class SignUp extends Component {
   state = {
-  firstName: "",
-  lastName: "",
+  first_name: "",
+  last_name: "",
   username: "",
   email: "",
   password: "",
@@ -59,11 +59,11 @@ render() {
         <h1>Sign Up</h1>
        <Form.Field>
          <label>First Name</label>
-         <input type='text' placeholder='First Name...' name='firstName' onChange={(e) => this.handleChange(e)} />
+         <input type='text' placeholder='First Name...' name='first_name' onChange={(e) => this.handleChange(e)} />
        </Form.Field>
        <Form.Field>
          <label>Last Name</label>
-         <input type='text' placeholder='Last Name...' name='lastName' onChange={(e) => this.handleChange(e)} />
+         <input type='text' placeholder='Last Name...' name='last_name' onChange={(e) => this.handleChange(e)} />
        </Form.Field>
        <Form.Field>
          <label>Username</label>

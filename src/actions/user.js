@@ -10,3 +10,7 @@ export function logout(history){
 export function profileImages(image) {
   return { type: 'GET_IMAGES', image: image}
 }
+
+export function favGems(user){
+  return { type: 'FAVORITE_GEMS', userId: user}
+}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {  Grid, Image, Rating, Icon, Header,
           Divider, Comment, Form, Button, Checkbox } from 'semantic-ui-react'
 import API from '../backend/data'
+import { favGems } from '../actions/cityGems'
 
 const ykFont = {
   fontFamily: 'Yanone Kaffeesatz, sans-serif'
@@ -12,16 +13,17 @@ const mwFont = {
   fontFamily: 'Merriweather, serif'
 }
 
-function formatTimestamp(timestamp) {
-  var options = {
-    weekday: "long",
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
-  }
-  return timestamp.toLocaleTimeString("en-us", options)
+const button= {
+  border: 'none',
+  color: 'black',
+  background: '#FFD800',
+  borderRadius: '30px',
+  textTransform: 'uppercase',
+  boxSizing: 'borderBox',
+  padding: '15px 40px',
+  fontWeight: '400',
+  fontSize: '13px',
+  cursor: 'pointer'
 }
 
 
@@ -43,6 +45,7 @@ class CityGemsDisplay extends Component {
       body: JSON.stringify({user_id: this.props.firstName})
     })
     this.setState({ rating: 1 })
+    this.props.dispatch(favGems(localStorage.id))
   }
 
   handleComment = (e) => {
@@ -58,7 +61,7 @@ class CityGemsDisplay extends Component {
         user_id: this.props.firstName
       })
     })
-    e.reset()
+    e.target.reset()
   }
 
 
@@ -71,6 +74,7 @@ class CityGemsDisplay extends Component {
 
   render(){
     if (this.props.gem === undefined) { return null; }
+    console.log(localStorage.id)
 
     let findLike = this.props.gem.likes.find(x => x.user_id === parseInt(localStorage.id))
     let like = (!!findLike) ? 1 : this.state.rating
@@ -152,20 +156,17 @@ class CityGemsDisplay extends Component {
               <Comment>
                 {this.props.gem.comments.map(comment =>
                   <Comment.Content>
-                    <Comment.Author as='a'>{comment.user_id.first_name}</Comment.Author>
+                    <Comment.Author as='a'>{comment.user.username}</Comment.Author>
                     <Comment.Metadata>
                       <div>Today at 5:42PM</div>
                     </Comment.Metadata>
                     <Comment.Text>{comment.body}</Comment.Text>
-                    <Comment.Actions>
-                      <Comment.Action>Reply</Comment.Action>
-                    </Comment.Actions>
                   </Comment.Content>
                 )}
               </Comment>
               <Form onSubmit={(e) => this.handleComment(e)} reply>
                 <Form.TextArea name='content' placeholder="Tell us what you think..." style={{height: '30%'}} onChange={e => this.handleChange(e)}/>
-                <Button content='Add Comment' labelPosition='left' icon='edit' primary />
+                <Button style={button} content='Add Comment' labelPosition='left' icon='edit' primary />
               </Form>
             </Comment.Group>
 

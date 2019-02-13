@@ -7,7 +7,6 @@ import LandingPage from './components/LandingPage'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import ProfilePage from './components/ProfilePage'
-import Unsplash from './components/Unsplash'
 import CityGemsData from './containers/CityGemsData'
 
 
@@ -19,7 +18,6 @@ class App extends Component {
       <div className="App" style={{ backgroundColor: "rgb(27,28,28)" }}>
         <Navbar />
         <Switch>
-          <Route path="/unsplash" component={Unsplash} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />

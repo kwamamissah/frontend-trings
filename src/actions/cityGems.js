@@ -16,6 +16,6 @@ export function viewedGems(gem){
   return { type: 'VIEWED_GEMS', gem: gem}
 }
 
-export function favGems(user = parseInt(localStorage.id) ){
+export function favGems(user){
   return { type: 'FAVORITE_GEMS', userId: user}
 }

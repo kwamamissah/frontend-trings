@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {  Grid, Image, Rating, Icon, Header,
           Divider, Comment, Form, Button, Checkbox } from 'semantic-ui-react'
 import API from '../backend/data'
-import { favGems } from '../actions/cityGems'
+import { favGems } from '../actions/profile'
 
 const ykFont = {
   fontFamily: 'Yanone Kaffeesatz, sans-serif'
@@ -73,8 +73,9 @@ class CityGemsDisplay extends Component {
 
 
   render(){
-    if (this.props.gem === undefined) { return null; }
+    if (this.props.gem === undefined || this.props.user === undefined) { return null; }
     console.log(localStorage.id)
+    console.log(this.props.user)
 
     let findLike = this.props.gem.likes.find(x => x.user_id === parseInt(localStorage.id))
     let like = (!!findLike) ? 1 : this.state.rating
@@ -184,7 +185,8 @@ const mapStateToProps = (state, ownProps) => {
   let gem = state.cityGems.gems.find(x => x.id === gemId)
   return {
     gem: gem,
-    firstName: state.firstName
+    firstName: state.firstName,
+    user: state.profile.user
 
   }
 }

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout} from '../actions/user';
 import { filterGems } from '../actions/cityGems'
+import API from '../backend/data'
+import { fetchUser } from '../actions/profile'
 
 
 const iconCss = {
@@ -36,6 +38,12 @@ class Navbar extends Component {
     this.props.dispatch(filterGems(e.target.textContent.trim()))
   }
 
+  fetchUser = () => {
+    fetch(`${API}/users`)
+    .then(resp => resp.json())
+    .then(user => this.props.dispatch(fetchUser(user)))
+  }
+
   fetchWeather = (city = this.state.city) => {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${process.env.REACT_APP_APPID}&units=imperial`)
     .then(resp => resp.json())
@@ -48,6 +56,7 @@ class Navbar extends Component {
 
   componentDidMount(){
     this.fetchWeather()
+    this.fetchUser()
   }
 
   getTemp = () => {

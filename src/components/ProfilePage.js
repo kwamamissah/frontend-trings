@@ -27,7 +27,6 @@ class ProfilePage extends Component {
     hour: null,
     query: 'mural'
   }
-  
 
   fetchQuote = () => {
     fetch(QUOTEAPI)
@@ -168,6 +167,9 @@ renderRandImage = () => {
               <Header as='h2' style={{ fontFamily: 'Caveat, cursive' }} >
               Favorites <span role="img" aria-label="heart">♥️</span>
               </Header>
+              <Card.Group itemsPerRow={5}>
+                {this.props.favGems.slice(0,5).map(x => <CityGems key={x.id} id={x.id}  />)}
+              </Card.Group>
             </Grid.Column>
           </Grid.Row>
           <Divider />
@@ -207,7 +209,7 @@ const mapStateToProps = (state) => {
     firstName: state.firstName,
     gems: state.cityGems.gems,
     viewedGems: state.cityGems.viewedGems,
-    favGems: state.cityGems.favGems
+    favGems: state.profile.favGems
    }
 }
 
